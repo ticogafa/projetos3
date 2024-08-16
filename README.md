@@ -57,7 +57,7 @@ Bem vindo ao repositório do nosso projeto ######. Nossa plataforma está sendo 
   </li> 
 
   <li>
-    <a  href="(https://projetos-3.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)"
+    <a  href="https://projetos-3.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog"
       >Link do Jira</a
     >
   </li>
