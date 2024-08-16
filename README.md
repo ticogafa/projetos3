@@ -57,13 +57,13 @@ Bem vindo ao repositório do nosso projeto ######. Nossa plataforma está sendo 
   </li> 
 
   <li>
-    <a  href="#"
+    <a  href="(https://projetos-3.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)"
       >Link do Jira</a
     >
   </li>
     <li>
-    <a  href="https://www.figma.com/file/1bqw5G2PKniOytyCujdKn5/FDS1?type=design&node-id=0%3A1&mode=design&t=68hMQEzQnMPQzem2-1"
-      >Protótipo Lo-Fi no Figma</a
+    <a  href="https://www.figma.com/board/FMqkKGk05UXgtjc96q9RxC/Untitled?node-id=0-1&t=C79wtwo0ExmmG2mg-1"
+      >Linha do tempo - Link do Figjam</a
     >
   </li>
   
