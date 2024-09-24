@@ -80,14 +80,10 @@ Bem vindo ao repositório do nosso projeto ######. Nossa plataforma está sendo 
 <summary>Entrega 1</summary>
 <ul>
   <li>
-<a href="#">Imagem do backlog no Jira</a>
+<a href="#">Diagrama de classes</a>
 </li>
   
-<li>
-    <a  href="https://youtu.be/zFNmWAJjifI"
-      >Protótipo  de Baixa Fidelidade - Screencast</a
-    >
-  </li>
+
   
   <li>
  <a href="#">Quadro sprint 1 iniciada</a>
@@ -101,91 +97,14 @@ Bem vindo ao repositório do nosso projeto ######. Nossa plataforma está sendo 
 <ul>
 <li>
     <a  href="#"
-      >Protótipo Lo-Fi no Figma</a
+      >Diagrama de classe completo</a
     >
   </li>
-<li>
-<a href ="Mídia/Diagramas">Diagrama de Atividades</a>
-</li>
 
-
-<li> 
-  <a href="#">BugTracker</a>
-</li>
-
-<li> 
-  <a href="#">Screencast - Uso do Sistema</a>
-</li>
-
-<li> 
-  <a href="#">Screencast Lo-Fi</a>
-</li>
- <li>
-    <a  href="#"
-      >Relatórios de Pair Programming</a
-    >
-  </li>
 
 
 </ul>
 </details>
-
-<details>
-<summary>Entrega 3</summary>
-<ul>
-  <li>
-    <a  href="#"
-      >ScreenCast Lo-Fi</a
-    >
-  </li>
- <li>
-    <a  href="#"
-      >Protótipo Lo-Fi no Figma</a
-    >
-  </li>
-  <li>
-    <a  href="#"
-      >ScreenCast - Uso do Sistema</a
-    >
-  </li>
- <li>
-    <a  href="#"
-      >Relatórios de Pair Programming</a
-    >
-  </li>
-  <li>
-    <a  href="#"
-      >Diagrama de Atividades</a
-    >
-  </li>
-  <li>
-    <a  href="#"
-      >ScreenCast - Deployment e Build</a
-    >
-  </li>
-  <li>
-    <a  href="#"
-      >ScreenCast - Testes E2E</a
-    >
-  </li>
-
-
-   <li>
-    <a  href="#"
-      >Quadro Sprint 2</a
-    >
-  </li>
-
-   <li>
-    <a  href="#"
-      >BugTracker</a
-    >
-  </li>
-</ul>
-
-
-</details>
-
 
 
 
