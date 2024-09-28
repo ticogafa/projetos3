@@ -13,4 +13,6 @@ public class HelloController {
         model.addAttribute("message", "oi mundo");
         return "index";
     }
+
+    
 }

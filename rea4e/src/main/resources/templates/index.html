@@ -1,1 +1,69 @@
 ﻿
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    </head>
+    <body>
+
+</html>
+<form id="user-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <button type="submit" th:onclick="createUser()">Create User</button>
+</form>
+
+<div id="response-message" style="display: none;"></div>
+
+
+<script>
+    
+    function createUser(){
+    
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+    
+        // Dados do formulário
+        const userData = {
+            name: name,
+            email: email,
+            password: password
+        };
+    
+        
+        // Fazer a requisição POST
+        fetch("/api/usuario/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData) // Converter os dados para JSON
+        })
+        alert("usuario "+name+" criado com sucesso!");
+    
+    
+    
+    }
+</script>
+</body>
+
+
+
+
+    
+     
