@@ -1,69 +1,89 @@
 package com.example.rea4e.domain.entity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Usuario {
 
-    @Id//diz que é um campo id
-    @GeneratedValue(strategy = GenerationType.AUTO)//pra todo valor gerado, o id é automaticamente incrementado
-    @Column(name="id")//diz ao jpa que é uma coluna na nossa db
-    private Integer id;
 
-    @Column(length = 255)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
+    private Long id;
+
+    @Column
     private String email;
-    
-    @Column(length = 30)
+    @Column
     private String password;
-    
-    @Column(length = 255)
+    @Column
     private String name;
-    
-    public Usuario(){
+    @Enumerated(EnumType.STRING)
+    private PapelUsuario role;
+    @ManyToMany
 
+    @JoinTable(
+        name = "usuario_favoritos",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "rea_id")
+    )
+    private List<RecursoEducacionalAberto> reasFavoritos;
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_concluidos",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "rea_id")
+    )
+    private List<RecursoEducacionalAberto> reasConcluidos;
+
+    @ManyToMany
+    @JoinTable(
+        name = "usuario_inscricoes",
+        joinColumns = @JoinColumn(name = "usuario_id"),
+        inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
+    private List<Curso> playlistsInscritas;
+
+    public void marcarReaComoConcluido(RecursoEducacionalAberto rea){
+        if(!reasConcluidos.contains(rea)){
+        this.reasConcluidos.add(rea);
+        }
+    }
+    public double calcularProgressoPlaylist(Curso playlist){
+        return playlist.calcularProgresso(this.reasConcluidos);//delegamos a tarefa de filtrar pro metodo da playlist
     }
 
-    public Usuario(Integer id, String email, String password, String name){
-        this.id=id;
-        this.email=email;
-        this.password=password;
-        this.name=name;
+    public void favoritarAula(RecursoEducacionalAberto rea){
+        if(!reasFavoritos.contains(rea)){
+            this.reasFavoritos.add(rea);
+        }
     }
 
-        public String getEmail() {
-            return email;
-        }
-        public String getName() {
-            return name;
-        }
+    public void inscreverEmPlaylist(Curso playlist) {
+        this.playlistsInscritas.add(playlist);
+    }
 
-        public Integer getId() {
-            return id;
-        }
+    public List<Permissao> obterPermissoes() {
+        return this.role.getPermissoes();
+    }
 
-        public String getPassword() {
-            return password;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-        
+    public boolean temPermissao(Permissao permissao) {
+        return this.obterPermissoes().contains(permissao);
 
     }
+}

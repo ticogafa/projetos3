@@ -20,4 +20,5 @@
         },
         body: JSON.stringify(userData) // Converter os dados para JSON
     })
-    
+}
+
