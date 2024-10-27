@@ -2,6 +2,7 @@ package com.example.rea4e.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
@@ -29,35 +31,39 @@ public class Usuario {
 
     @Column
     private String email;
+
     @Column
     private String password;
+
     @Column
     private String name;
+
     @Enumerated(EnumType.STRING)
     private PapelUsuario role;
-    @ManyToMany
 
+    @ManyToMany
     @JoinTable(
         name = "usuario_favoritos",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "rea_id")
     )
-    private List<RecursoEducacionalAberto> reasFavoritos;
+    private List<RecursoEducacionalAberto> reasFavoritos = new ArrayList<>(); // Inicializando
+    
     @ManyToMany
     @JoinTable(
         name = "usuario_concluidos",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "rea_id")
     )
-    private List<RecursoEducacionalAberto> reasConcluidos;
-
+    private List<RecursoEducacionalAberto> reasConcluidos = new ArrayList<>(); // Inicializando
+    
     @ManyToMany
     @JoinTable(
         name = "usuario_inscricoes",
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private List<Curso> playlistsInscritas;
+    private List<Curso> playlistsInscritas = new ArrayList<>(); // Inicializando
 
     public void marcarReaComoConcluido(RecursoEducacionalAberto rea){
         if(!reasConcluidos.contains(rea)){
@@ -65,7 +71,7 @@ public class Usuario {
         }
     }
     public double calcularProgressoPlaylist(Curso playlist){
-        return playlist.calcularProgresso(this.reasConcluidos);//delegamos a tarefa de filtrar pro metodo da playlist
+        return playlist.calcularProgresso(this.reasConcluidos);
     }
 
     public void favoritarAula(RecursoEducacionalAberto rea){

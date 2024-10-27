@@ -1,7 +1,13 @@
 package com.example.rea4e.domain.service;
 
+
+import com.example.rea4e.domain.entity.Usuario;
+
 public interface UsuarioService {
-//TODO: listarUsuariosPorTipo(PapelUsuario papel)
+Usuario salvar(Usuario usuario);
+void deletar(Long id);
+Usuario buscarPorId(Long id);
 
 //TODO: listarPermissoesUsuario(Long usuarioId)
+
 }

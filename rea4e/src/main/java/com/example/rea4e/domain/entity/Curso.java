@@ -1,15 +1,14 @@
 package com.example.rea4e.domain.entity;
 
-import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -27,19 +26,26 @@ public class Curso {
     @Column
     private String descricao;
 
-    @Column
-    private List<RecursoEducacionalAberto> recursos;  // Agrupa vários REAs
+    @Enumerated(EnumType.STRING)
+    private Categorias categoria;
+
+    @ManyToMany
+    @JoinTable(
+        name = "curso_recursos",
+        joinColumns = @JoinColumn(name = "curso_id"),
+        inverseJoinColumns = @JoinColumn(name = "rea_id")
+    )
+    private Set<RecursoEducacionalAberto> recursos = new HashSet<>();  // Inicializa como um Set
 
     @Column
-    private String imagem;
-
-
+    private String imagem_url;
 
     // Métodos para adicionar REAs à playlist
     public void adicionarRecurso(RecursoEducacionalAberto rea) {
-        this.recursos.add(rea);
+        if (!recursos.contains(rea)) {
+            this.recursos.add(rea);
+        }
     }
-
 
     // Método para calcular o progresso com base nos REAs concluídos
     public double calcularProgresso(List<RecursoEducacionalAberto> reasConcluidos) {
