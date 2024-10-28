@@ -51,5 +51,11 @@ public class RecursoEducacionalAberto {
     @ManyToMany(mappedBy = "recursos") // Relacionamento muitos-para-muitos inverso
     private Set<Curso> cursos = new HashSet<>(); // Inicializa como um Set
 
-
+    public RecursoEducacionalAberto(String titulo, Usuario autor, String url, String descricao, Categorias categoria) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.url = url;
+        this.descricao = descricao;
+        this.categoria = categoria;
+    }
 }

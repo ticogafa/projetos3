@@ -13,8 +13,6 @@ import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
 import com.example.rea4e.domain.service.UsuarioService;
 import com.example.rea4e.domain.service.CursoService;
 
-import java.util.List;
-
 @SpringBootApplication(scanBasePackages = "com.example.rea4e")
 public class Rea4eApplication {
 

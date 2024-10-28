@@ -3,7 +3,6 @@ package com.example.rea4e.domain.service;
 import java.util.List;
 
 import com.example.rea4e.domain.entity.Curso;
-import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
 
 public interface CursoService {
 

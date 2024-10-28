@@ -45,7 +45,7 @@ public class UsuarioEventListener {
             throw new ResourceAlreadyFavoritedException("Recurso já favoritado.");
         }
             usuario.getReasFavoritos().add(recurso);
-            usuarioRepository.save(usuario);
+            usuarioService.salvar(usuario);
         
     }
 
@@ -105,6 +105,7 @@ public void handleInscricaoEmCurso(InscricaoEmCursoEvent event){
         usuarioRepository.save(usuario);
     }
 }
+
 @EventListener
 public void handleDesinscricaoEmCurso(DesinscricaoEmCursoEvent event){
 Long usuarioId=event.getUsuarioId();

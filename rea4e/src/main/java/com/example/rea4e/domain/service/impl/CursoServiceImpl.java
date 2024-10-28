@@ -1,7 +1,6 @@
 package com.example.rea4e.domain.service.impl;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.rea4e.domain.entity.Curso;
 import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
