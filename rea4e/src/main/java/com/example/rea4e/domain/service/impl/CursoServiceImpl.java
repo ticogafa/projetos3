@@ -39,7 +39,7 @@ public class CursoServiceImpl extends BaseService<Curso> implements CursoService
         RecursoEducacionalAberto recurso = recursoService.buscarPorId(recursoId);
         boolean wasRemoved = curso.getRecursos().remove(recurso);
         if (!wasRemoved) {
-            throw new NoResourcesFoundException("Recurso não encontrado no curso com ID: " + curso.getId());
+            throw new ResourceNotFoundInCourseException("Recurso não encontrado no curso com ID: " + curso.getId());
         }
         super.salvar(curso);
     }

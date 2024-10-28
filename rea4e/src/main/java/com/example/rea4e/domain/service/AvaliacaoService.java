@@ -11,8 +11,6 @@ void deletar(Long id);
 //TODO: listarAvaliacoesPorRecurso(Long recursoId)
 public List<Avaliacao> listarAvaliacoesPorRecurso(Long recursoId);
 
-//TODO: listarAvaliacoesPorUsuario(Long usuarioId)
-public List<Avaliacao> listarAvaliacoesPorUsuario(Long usuarioId);
 
 //TODO: calcularMediaAvaliacoes(Long recursoId)    
 public double calcularMediaAvaliacoes(Long recursoId);  

@@ -13,9 +13,12 @@ import com.example.rea4e.domain.event.InscricaoEmCursoEvent;
 import com.example.rea4e.domain.event.RecursoDesfavoritadoEvent;
 import com.example.rea4e.domain.event.RecursoFavoritadoEvent;
 import com.example.rea4e.domain.event.RecursoMarcadoComoConcluidoEvent;
-import com.example.rea4e.domain.exception.NoResourcesFoundException;
-import com.example.rea4e.domain.exception.ReourceAlreadyFinishedException;
+import com.example.rea4e.domain.exception.CourseNotFoundInSubscribedListException;
 import com.example.rea4e.domain.exception.ResourceAlreadyFavoritedException;
+import com.example.rea4e.domain.exception.ResourceAlreadyFinishedException;
+import com.example.rea4e.domain.exception.ResourceNotPresentInConcludedException;
+import com.example.rea4e.domain.exception.ResourceNotPresentInFavouritesException;
+import com.example.rea4e.domain.exception.UserAlreadySubscribedException;
 import com.example.rea4e.domain.repository.UsuarioRepository;
 import com.example.rea4e.domain.service.CursoService;
 import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
@@ -55,8 +58,8 @@ public class UsuarioEventListener {
         Long recursoId=event.getRecursoId();
         RecursoEducacionalAberto recurso = reaService.buscarPorId(recursoId);//aqui vai verificar se o recurso existe
         Usuario usuario = usuarioService.buscarPorId(usuarioId);//a função verifica se a entidade existe
-        if (usuario.getReasFavoritos().contains(recurso)) {
-            throw new ResourceAlreadyFavoritedException("Recurso já favoritado.");
+        if (!usuario.getReasFavoritos().contains(recurso)) {
+            throw new ResourceNotPresentInFavouritesException("Recurso não está presente na lista de favoritos.");
         }
             usuario.getReasFavoritos().add(recurso);
             usuarioRepository.save(usuario);
@@ -69,7 +72,7 @@ public class UsuarioEventListener {
         RecursoEducacionalAberto recurso = reaService.buscarPorId(recursoId);
         Usuario usuario = usuarioService.buscarPorId(usuarioId);//a função verifica se a entidade existe
         if(usuario.getReasConcluidos().contains(recurso)){
-            throw new ReourceAlreadyFinishedException("Recurso já marcado como concluído.");
+            throw new ResourceAlreadyFinishedException("Recurso já marcado como concluído.");
         }
 
         usuario.getReasConcluidos().add(recurso);
@@ -83,7 +86,7 @@ public class UsuarioEventListener {
         RecursoEducacionalAberto recurso = reaService.buscarPorId(recursoId);
         Usuario usuario = usuarioService.buscarPorId(usuarioId);//a função verifica se a entidade existe
         if (!usuario.getReasConcluidos().remove(recurso)) {
-            throw new NoResourcesFoundException("Recurso não encontrado nos concluídos.");
+            throw new ResourceNotPresentInConcludedException("Recurso não encontrado nos concluídos.");
         }
         usuarioRepository.save(usuario);    
     }
@@ -97,10 +100,10 @@ public void handleInscricaoEmCurso(InscricaoEmCursoEvent event){
 
         Usuario usuario = usuarioService.buscarPorId(usuarioId);
         Curso curso = cursoService.buscarPorId(cursoId);
-        List<Curso> inscricoes = usuario.getCursosInscritos();
-        boolean wasAdded = inscricoes.add(curso);
+        List<Curso> inscricoesUsuario = usuario.getCursosInscritos();
+        boolean wasAdded = inscricoesUsuario.add(curso);
         if (!wasAdded) {
-            throw new NoResourcesFoundException("Curso já inscrito pelo usuário com ID: " + usuario.getId());
+            throw new UserAlreadySubscribedException("Usuário com ID: " + usuario.getId()+" já inscrito no curso com ID: " + curso.getId());
         }
         usuarioRepository.save(usuario);
     }
@@ -114,10 +117,10 @@ Long cursoId=event.getCursoId();
     if(usuarioId != null && cursoId != null){
         Usuario usuario = usuarioService.buscarPorId(usuarioId);
         Curso curso = cursoService.buscarPorId(cursoId);
-        List<Curso> inscricoes = usuario.getCursosInscritos();
-        boolean wasRemoved = inscricoes.remove(curso);
+        List<Curso> inscricoesUsuario = usuario.getCursosInscritos();
+        boolean wasRemoved = inscricoesUsuario.remove(curso);
         if (!wasRemoved) {
-            throw new NoResourcesFoundException("Curso não encontrado nos inscritos do usuário com ID: " + usuario.getId());
+            throw new CourseNotFoundInSubscribedListException("Curso não encontrado nos inscritos do usuário com ID: " + usuario.getId());
         }
         usuarioRepository.save(usuario);
     }

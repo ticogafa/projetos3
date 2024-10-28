@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.example.rea4e.domain.entity.Usuario;
 
 import com.example.rea4e.domain.service.BaseService;
-import com.example.rea4e.domain.service.EventPublisher;
+import com.example.rea4e.domain.service.UsuarioEventPublisher;
 import com.example.rea4e.domain.service.UsuarioService;
 
 import jakarta.transaction.Transactional;
@@ -14,9 +14,9 @@ import jakarta.transaction.Transactional;
 @Service
 public class UsuarioServiceImpl extends BaseService<Usuario> implements UsuarioService {
     
-    private final EventPublisher eventPublisher;
+    private final UsuarioEventPublisher eventPublisher;
 
-    public UsuarioServiceImpl(EventPublisher eventPublisher) {
+    public UsuarioServiceImpl(UsuarioEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
     }
     public void favoritarRecurso(Long usuarioId, Long recursoId){

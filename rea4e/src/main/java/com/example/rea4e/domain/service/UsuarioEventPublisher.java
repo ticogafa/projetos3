@@ -10,10 +10,10 @@ import com.example.rea4e.domain.event.RecursoDesmarcadoComoConcluidoEvent;
 import com.example.rea4e.domain.event.DesinscricaoEmCursoEvent;
 
 @Service
-public class EventPublisher {
+public class UsuarioEventPublisher {
     private final ApplicationEventPublisher publisher;
 
-    public EventPublisher(ApplicationEventPublisher publisher) {
+    public UsuarioEventPublisher(ApplicationEventPublisher publisher) {
         this.publisher = publisher;
     }
 
