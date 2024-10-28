@@ -24,10 +24,6 @@ INSERT INTO COMENTARIO (PERGUNTA, USUARIO_ID, REA_ID) VALUES
 ('A aula 3 não está abrindo pra mim.', 2, 1),
 ('Ótimo curso! Como faço para acessar o material adicional?', 3, 1);
 
-INSERT INTO RESPOSTA_COMENTARIO (RESPOSTA, USUARIO_ID) VALUES
-('Você precisa atualizar o navegador.', 4),
-('Eu também tive esse problema, mas consegui resolver.', 1),
-('O material está disponível na aba de downloads.', 2);
 
 INSERT INTO USUARIO_INSCRICOES (USUARIO_ID, CURSO_ID) VALUES
 (1, 1),

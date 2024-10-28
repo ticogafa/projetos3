@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.rea4e.domain.entity.Comentario;
-import com.example.rea4e.domain.entity.RespostaComentario;
 import com.example.rea4e.domain.service.ComentarioService;
 
 @RestController
@@ -31,13 +30,7 @@ public ComentarioController(ComentarioService servico) {
         return ResponseEntity.ok(comentarioSalvo);
     }
 
-    @PostMapping("{id}")
-    public ResponseEntity<RespostaComentario> adicionarResposta(@RequestBody RespostaComentario resposta, @PathVariable Long id) {
-        Comentario comentario = servico.buscarPorId(id);
-        servico.adicionarResposta(id, resposta);
-        servico.salvar(comentario);
-        return ResponseEntity.ok(resposta);
-    }
+
 
     @GetMapping("{id}")
     public ResponseEntity<Comentario> buscarPorId(@PathVariable Long id) {
@@ -64,10 +57,4 @@ public ComentarioController(ComentarioService servico) {
         return ResponseEntity.ok(comentario);
     }
 
-    @GetMapping("/recurso/{recursoId}/{comentarioId}/respostas")
-    public ResponseEntity<List<RespostaComentario>> listarRespostasPorComentario(@PathVariable Long comentarioId) {
-        Comentario comentario= servico.buscarPorId(comentarioId);
-        List<RespostaComentario> respostas = comentario.getRespostas();
-        return ResponseEntity.ok(respostas);
-    }
-}   
+}

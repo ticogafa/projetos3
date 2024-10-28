@@ -10,7 +10,6 @@ import com.example.rea4e.domain.service.ComentarioService;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
-import com.example.rea4e.domain.entity.RespostaComentario;
 @Transactional
 @Service
 public class ComentarioServiceImpl extends BaseService<Comentario> implements ComentarioService{
@@ -37,10 +36,5 @@ private final ComentarioRepository comentarioRepository;
         return comentarios;
     }
 
-    public RespostaComentario adicionarResposta(Long comentarioId, RespostaComentario resposta){
-        Comentario comentario = super.buscarPorId(comentarioId);
-        comentario.getRespostas().add(resposta);
-        super.salvar(comentario);
-        return resposta;
-    }
+
 }

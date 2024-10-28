@@ -42,8 +42,6 @@ public class Comentario {
     @JoinColumn(name = "rea_id", nullable = false) // Nome da coluna no banco de dados
     private RecursoEducacionalAberto reaRelacionado;
 
-    @OneToMany(mappedBy = "resposta") // Uma lista de respostas para este comentário
-    private List<RespostaComentario> respostas = new ArrayList<>(); // Inicializa a lista
 
     public Comentario(String pergunta, Usuario autor, RecursoEducacionalAberto reaRelacionado) {
         this.pergunta = pergunta;

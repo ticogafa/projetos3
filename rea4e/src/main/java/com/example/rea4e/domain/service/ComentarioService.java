@@ -1,7 +1,6 @@
 package com.example.rea4e.domain.service;
 import java.util.List;
 import com.example.rea4e.domain.entity.Comentario;
-import com.example.rea4e.domain.entity.RespostaComentario;
 
 import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
 public interface ComentarioService {
@@ -20,6 +19,5 @@ Integer contarComentariosPorRecurso(Long recursoId);
 
 List<Comentario> listarComentariosPorRecurso(RecursoEducacionalAberto recurso);
 
-RespostaComentario adicionarResposta(Long id, RespostaComentario resposta);
 
 }
