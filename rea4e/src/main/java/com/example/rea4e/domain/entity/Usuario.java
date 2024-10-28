@@ -16,6 +16,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 @Data
@@ -41,6 +44,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private PapelUsuario role;
 
+    @JsonIgnore//diz para o parser que isso deve ser ignorado no nosso json
     @ManyToMany
     @JoinTable(
         name = "usuario_favoritos",
@@ -50,7 +54,7 @@ public class Usuario {
     private List<RecursoEducacionalAberto> reasFavoritos = new ArrayList<>(); // Inicializando
     
     
-
+    @JsonIgnore//diz para o parser que isso deve ser ignorado no nosso json
     @ManyToMany
     @JoinTable(
         name = "usuario_concluidos",
@@ -59,6 +63,7 @@ public class Usuario {
     )
     private List<RecursoEducacionalAberto> reasConcluidos = new ArrayList<>(); // Inicializando
     
+    @JsonIgnore//diz para o parser que isso deve ser ignorado no nosso json
     @ManyToMany
     @JoinTable(
         name = "usuario_inscricoes",
@@ -73,8 +78,6 @@ public class Usuario {
     }
 
 
-
-
     public List<Permissao> obterPermissoes() {
         return this.role.getPermissoes();
     }
@@ -84,3 +87,6 @@ public class Usuario {
 
     }
 }
+
+
+

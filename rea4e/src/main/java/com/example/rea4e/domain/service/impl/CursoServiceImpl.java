@@ -1,9 +1,15 @@
-package com.example.rea4e.domain.service;
+package com.example.rea4e.domain.service.impl;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.rea4e.domain.entity.Curso;
 import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
 import com.example.rea4e.domain.exception.*;
+import com.example.rea4e.domain.repository.RecursoEducacionalAbertoRepository;
+import com.example.rea4e.domain.service.BaseService;
+import com.example.rea4e.domain.service.CursoService;
+import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
 
 import jakarta.transaction.Transactional;
 
@@ -12,12 +18,13 @@ import jakarta.transaction.Transactional;
 public class CursoServiceImpl extends BaseService<Curso> implements CursoService {
     // Todos os métodos estão disponíveis via herança.
     // Implementações específicas do domínio podem ser adicionadas aqui
-
-
-
-    @Autowired
-    private RecursoEducacionalAbertoService recursoService;
     
+    private final RecursoEducacionalAbertoService recursoService;
+
+    public CursoServiceImpl(RecursoEducacionalAbertoService recursoService, RecursoEducacionalAbertoRepository reaRepositorio) {
+        this.recursoService = recursoService;
+    }
+
     public Curso adicionarRecursoAoCurso(Long cursoId, Long recursoId) {
         Curso curso = super.buscarPorId(cursoId);
         RecursoEducacionalAberto recurso = recursoService.buscarPorId(recursoId);//aqui ja tem a verificação se o recurso existe
@@ -37,6 +44,8 @@ public class CursoServiceImpl extends BaseService<Curso> implements CursoService
         }
         super.salvar(curso);
     }
+
+
 
     
 }

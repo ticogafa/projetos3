@@ -32,10 +32,6 @@ public class RecursoEducacionalAbertoController{
         return servico.listarRecursosPorCategoria(cat);
     }
 
-    @GetMapping("/curso/{cursoId}/recursos")
-    public List<RecursoEducacionalAberto> listarRecursosPorCurso(@PathVariable Long cursoId) {
-        return servico.listarRecursosPorCurso(cursoId);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<RecursoEducacionalAberto> buscarPorId(@PathVariable Long id) {
@@ -51,5 +47,10 @@ public class RecursoEducacionalAbertoController{
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         servico.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("{cursoId}/recursos")
+    public List<RecursoEducacionalAberto> listarRecursosPorCurso(@PathVariable Long cursoId) {
+        return servico.listarRecursosPorCurso(cursoId);
     }
 }

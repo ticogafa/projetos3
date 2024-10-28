@@ -5,10 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.rea4e.domain.service.UsuarioService;
+import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
 import com.example.rea4e.domain.entity.Usuario;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import java.util.List;
 
 @RestController//RestController vai anotar os metodos com @ResponseBody que indica o retorno em JSON
 @RequestMapping("/api/usuario/")//RequestMapping vai mapear a URL
@@ -41,28 +42,34 @@ public class UsuarioController {
     // Favoritar uma aula
     @PostMapping("{usuarioId}/favoritar/{recursoId}")
     public ResponseEntity<Void> favoritarAula(@PathVariable Long usuarioId, @PathVariable Long recursoId) {
-        servico.favoritarAula(usuarioId, recursoId);
+        servico.favoritarRecurso(usuarioId, recursoId);
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("{usuarioId}/favoritos")
+    public ResponseEntity<List<RecursoEducacionalAberto>> listarFavoritos(@PathVariable Long usuarioId) {
+        Usuario usuario = servico.buscarPorId(usuarioId);
+        return ResponseEntity.ok(usuario.getReasFavoritos());
+    }
+    
     // Desfavoritar uma aula
     @DeleteMapping("{usuarioId}/favoritar/{recursoId}")
     public ResponseEntity<Void> desfavoritarAula(@PathVariable Long usuarioId, @PathVariable Long recursoId) {
-        servico.desfavoritarAula(usuarioId, recursoId);
+        servico.desfavoritarRecurso(usuarioId, recursoId);
         return ResponseEntity.noContent().build();
     }
 
     // Marcar um REA como concluído
     @PostMapping("{usuarioId}/concluir/{reaId}")
     public ResponseEntity<Void> marcarReaComoConcluido(@PathVariable Long usuarioId, @PathVariable Long reaId) {
-        servico.marcarReaComoConcluido(usuarioId, reaId);
+        servico.marcarRecursoComoConcluido(usuarioId, reaId);
         return ResponseEntity.noContent().build();
     }
 
     // Desmarcar um REA como concluído
     @DeleteMapping("{usuarioId}/concluir/{reaId}")
     public ResponseEntity<Void> desmarcarReaComoConcluido(@PathVariable Long usuarioId, @PathVariable Long reaId) {
-        servico.desmarcarReaComoConcluido(usuarioId, reaId);
+        servico.desmarcarRecursoComoConcluido(usuarioId, reaId);
         return ResponseEntity.noContent().build();
     }
 
@@ -81,5 +88,5 @@ public class UsuarioController {
     }
 
     
-
+ 
 }

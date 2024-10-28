@@ -8,10 +8,12 @@ public interface UsuarioService {
 Usuario salvar(Usuario usuario);
 void deletar(Long id);
 Usuario buscarPorId(Long id);
-void favoritarAula(Long usuarioId, Long Recurso);
-void desfavoritarAula(Long usuarioId, Long RecursoId);
-void marcarReaComoConcluido(Long usuarioId, Long reaId);
-void desmarcarReaComoConcluido(Long usuarioId, Long reaId);
+void favoritarRecurso(Long usuarioId, Long Recurso);
+ 
+void desfavoritarRecurso(Long usuarioId, Long RecursoId);
+
+void marcarRecursoComoConcluido(Long usuarioId, Long reaId);
+void desmarcarRecursoComoConcluido(Long usuarioId, Long reaId);
 void inscreverEmCurso(Long usuarioId, Long cursoId);
 void desinscreverEmCurso(Long usuarioId, Long cursoId);
 

@@ -1,4 +1,4 @@
-package com.example.rea4e.domain.service;
+package com.example.rea4e.domain.service.impl;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.example.rea4e.domain.entity.Avaliacao;
 import com.example.rea4e.domain.repository.AvaliacaoRepository;
 import com.example.rea4e.domain.repository.RecursoEducacionalAbertoRepository;
+import com.example.rea4e.domain.service.AvaliacaoService;
+import com.example.rea4e.domain.service.BaseService;
 
 import jakarta.transaction.Transactional;
 

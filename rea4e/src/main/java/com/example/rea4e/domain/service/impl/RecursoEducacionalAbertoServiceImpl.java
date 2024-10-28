@@ -1,13 +1,15 @@
-package com.example.rea4e.domain.service;
+package com.example.rea4e.domain.service.impl;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 
 import com.example.rea4e.domain.entity.*;
 import com.example.rea4e.domain.exception.NoResourcesFoundException;
 import com.example.rea4e.domain.repository.RecursoEducacionalAbertoRepository;
+import com.example.rea4e.domain.service.BaseService;
+import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
+import com.example.rea4e.domain.service.UsuarioService;
 
 @Transactional
 @Service
@@ -15,16 +17,14 @@ public class RecursoEducacionalAbertoServiceImpl extends BaseService<RecursoEduc
     // Todos os métodos estão disponíveis via herança.
     // Implementações específicas do domínio podem ser adicionadas aqui
 
-    @Autowired
-    private RecursoEducacionalAbertoRepository reaRepositorio;//So vou chamar o repositorio da entidade tratada
+    private final UsuarioService usuarioService;
+    private final RecursoEducacionalAbertoRepository reaRepositorio;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
-    private CursoService cursoService;
-
-
+    public RecursoEducacionalAbertoServiceImpl(UsuarioService usuarioService, RecursoEducacionalAbertoRepository reaRepositorio) {
+        this.usuarioService = usuarioService;
+        this.reaRepositorio = reaRepositorio;
+    }
+    
     @Override
     public List<RecursoEducacionalAberto> listarRecursosPorAutor(Long autorId) {
         Usuario autor = usuarioService.buscarPorId(autorId);
@@ -40,9 +40,19 @@ public class RecursoEducacionalAbertoServiceImpl extends BaseService<RecursoEduc
         return lista;
     }
 
+
+    @Override
+    public List<RecursoEducacionalAberto> listarRecursosPorCategoria(Categorias categoria) {
+        List<RecursoEducacionalAberto> lista =reaRepositorio.findByCategoria(categoria);
+        if(lista.isEmpty()){
+            throw new NoResourcesFoundException("Nenhum recurso encontrado para a categoria: " + categoria);
+        }
+        return lista;
+    }
+
     @Override
     public List<RecursoEducacionalAberto> listarRecursosPorCurso(Long cursoId) {
-       return listarRecursosPorCurso(cursoService.buscarPorId(cursoId));
+       return reaRepositorio.findByCursos_Id(cursoId);
     }
 
     @Override
@@ -51,15 +61,6 @@ public class RecursoEducacionalAbertoServiceImpl extends BaseService<RecursoEduc
         if(lista.isEmpty()){
             throw new NoResourcesFoundException("Nenhum recurso encontrado para o curso com ID: " + curso.getId());
        }
-        return lista;
-    }
-
-    @Override
-    public List<RecursoEducacionalAberto> listarRecursosPorCategoria(Categorias categoria) {
-        List<RecursoEducacionalAberto> lista =reaRepositorio.findByCategoria(categoria);
-        if(lista.isEmpty()){
-            throw new NoResourcesFoundException("Nenhum recurso encontrado para a categoria: " + categoria);
-        }
         return lista;
     }
 }

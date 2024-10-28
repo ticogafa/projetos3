@@ -1,7 +1,9 @@
-package com.example.rea4e.domain.service;
+package com.example.rea4e.domain.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.example.rea4e.domain.entity.RespostaComentario;
+import com.example.rea4e.domain.service.BaseService;
+import com.example.rea4e.domain.service.RespostaComentarioService;
 
 import jakarta.transaction.Transactional;
 

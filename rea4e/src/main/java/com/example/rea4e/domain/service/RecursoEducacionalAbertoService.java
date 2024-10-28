@@ -18,8 +18,8 @@ List<RecursoEducacionalAberto> listarRecursosPorAutor(Long autorId);
 
 List<RecursoEducacionalAberto> listarRecursosPorCategoria(Categorias categoria);
 
-List<RecursoEducacionalAberto> listarRecursosPorCurso(Curso curso);
-
+List<RecursoEducacionalAberto> listarRecursosPorCurso(Curso cursoId);
 List<RecursoEducacionalAberto> listarRecursosPorCurso(Long cursoId);
+
 
 }
