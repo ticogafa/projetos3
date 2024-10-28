@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +37,7 @@ public class Comentario {
     private Usuario autor;
 
     @JsonIgnore
+    @JsonManagedReference
     @ManyToOne // Um comentário está relacionado a um único recurso educacional
     @JoinColumn(name = "rea_id", nullable = false) // Nome da coluna no banco de dados
     private RecursoEducacionalAberto reaRelacionado;

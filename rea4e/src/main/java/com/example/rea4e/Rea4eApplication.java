@@ -27,6 +27,7 @@ public class Rea4eApplication {
         return args -> {
             System.out.println("Application started...");
 
+            /* 
             // Teste de criação de usuário
             Usuario usuario = new Usuario();
             usuario.setName("Test User");
@@ -51,7 +52,7 @@ public class Rea4eApplication {
             cursoService.salvar(curso);
             System.out.println("Curso criado: " + curso);
 
-
+*/
             // Teste de inscrição em um curso
             //usuarioService.inscreverEmCurso(usuario.getId(), curso.getId());
             //System.out.println("Usuário inscrito no curso: " + curso);

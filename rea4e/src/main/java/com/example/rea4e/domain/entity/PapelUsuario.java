@@ -4,7 +4,7 @@ import java.util.List;
 public enum PapelUsuario {
     ADMIN(List.of(Permissao.GERENCIAR_USUARIOS, Permissao.GERENCIAR_REAS)),
     PROFESSOR(List.of(Permissao.CRIAR_PLAYLIST, Permissao.GERENCIAR_REAS)),
-    ESTUDANTE(List.of(Permissao.VISUALIZAR_REAS, Permissao.MARCAR_REA_CONCLUIDO));
+    USER(List.of(Permissao.VISUALIZAR_REAS, Permissao.MARCAR_REA_CONCLUIDO));
 
     private List<Permissao> permissoes;
 

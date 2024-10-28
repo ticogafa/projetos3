@@ -1,5 +1,7 @@
 package com.example.rea4e.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,15 +20,13 @@ public class RespostaComentario {
     @Column
     private String resposta;
 
+    @ManyToOne // Relacionamento muitos-para-um com Comentario
+    @JsonBackReference
+    @JoinColumn(name = "comentario_id") // Nome da coluna que referencia o comentário
+    private Comentario comentario;
+
     @ManyToOne // Relacionamento muitos-para-um com Usuario
     @JoinColumn(name = "usuario_id") // Nome da coluna que referencia o usuário
     private Usuario autor;
 
-    @Column
-    private int curtidas;
-
-    // Método para curtir a resposta
-    public void curtir() {
-        this.curtidas++;
-    }
 }
