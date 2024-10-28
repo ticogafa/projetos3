@@ -49,6 +49,8 @@ public class Usuario {
     )
     private List<RecursoEducacionalAberto> reasFavoritos = new ArrayList<>(); // Inicializando
     
+    
+
     @ManyToMany
     @JoinTable(
         name = "usuario_concluidos",
@@ -63,26 +65,15 @@ public class Usuario {
         joinColumns = @JoinColumn(name = "usuario_id"),
         inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private List<Curso> playlistsInscritas = new ArrayList<>(); // Inicializando
+    private List<Curso> cursosInscritos = new ArrayList<>(); // Inicializando
 
-    public void marcarReaComoConcluido(RecursoEducacionalAberto rea){
-        if(!reasConcluidos.contains(rea)){
-        this.reasConcluidos.add(rea);
-        }
-    }
+
     public double calcularProgressoPlaylist(Curso playlist){
         return playlist.calcularProgresso(this.reasConcluidos);
     }
 
-    public void favoritarAula(RecursoEducacionalAberto rea){
-        if(!reasFavoritos.contains(rea)){
-            this.reasFavoritos.add(rea);
-        }
-    }
 
-    public void inscreverEmPlaylist(Curso playlist) {
-        this.playlistsInscritas.add(playlist);
-    }
+
 
     public List<Permissao> obterPermissoes() {
         return this.role.getPermissoes();

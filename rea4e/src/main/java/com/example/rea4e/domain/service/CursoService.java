@@ -15,12 +15,11 @@ List<Curso> listar();
 Curso buscarPorId(Long id);
 
 
-//TODO: adicionarRecursoAoCurso(Long cursoId, Long recursoId)
+Curso adicionarRecursoAoCurso(Long cursoId, Long recursoId);
 
-//TODO: removerRecursoDoCurso(Long cursoId, Long recursoId)
+void removerRecursoDoCurso(Long cursoId, Long recursoId);
 
-//TODO: listarRecursosDoCurso(Long cursoId)
 
-//TODO buscarCursoPorId(Long id)
+
 
 }

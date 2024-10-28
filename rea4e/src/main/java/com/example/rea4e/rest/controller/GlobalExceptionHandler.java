@@ -9,6 +9,7 @@ import com.example.rea4e.domain.exception.NoResourcesFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 
+//Escrever @ControllerAdvice é o mesmo que escrever @Component, mas com a semântica de que é um componente que vai tratar exceções, tambem inclui @ResponseBody e @ExceptionHandler em todos os métodos
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

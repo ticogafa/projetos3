@@ -40,12 +40,6 @@ public class Curso {
     @Column
     private String imagem_url;
 
-    // Métodos para adicionar REAs à playlist
-    public void adicionarRecurso(RecursoEducacionalAberto rea) {
-        if (!recursos.contains(rea)) {
-            this.recursos.add(rea);
-        }
-    }
 
     // Método para calcular o progresso com base nos REAs concluídos
     public double calcularProgresso(List<RecursoEducacionalAberto> reasConcluidos) {

@@ -7,4 +7,5 @@ import com.example.rea4e.domain.entity.Curso;
 @Repository
 public interface CursoRepository extends JpaRepository<Curso, Long>{
 
+
 }

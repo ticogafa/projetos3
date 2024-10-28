@@ -9,7 +9,7 @@ import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
 import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
 import java.util.List;
 
-@RestController
+@RestController//RestController vai anotar os metodos com @ResponseBody que indica o retorno em JSON
 @RequestMapping("/api/recurso-educacional-aberto")
 public class RecursoEducacionalAbertoController{
 
@@ -32,7 +32,7 @@ public class RecursoEducacionalAbertoController{
         return servico.listarRecursosPorCategoria(cat);
     }
 
-    @GetMapping("/curso/{cursoId}")
+    @GetMapping("/curso/{cursoId}/recursos")
     public List<RecursoEducacionalAberto> listarRecursosPorCurso(@PathVariable Long cursoId) {
         return servico.listarRecursosPorCurso(cursoId);
     }
