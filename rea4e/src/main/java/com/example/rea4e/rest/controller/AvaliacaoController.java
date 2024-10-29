@@ -22,7 +22,7 @@ public AvaliacaoController(AvaliacaoService avaliacaoService) {
     this.avaliacaoService = avaliacaoService;
 }
 
-@PostMapping("/avaliar-recurso/")
+@PostMapping("/avaliar-recurso")
 public ResponseEntity<Avaliacao> avaliarRecurso(@RequestBody Avaliacao avaliacao) {
     return ResponseEntity.ok(avaliacaoService.salvar(avaliacao));
 }

@@ -17,56 +17,44 @@ import com.example.rea4e.domain.entity.Curso;
 import com.example.rea4e.domain.service.CursoService;
 
 @RestController//RestController vai anotar os metodos com @ResponseBody que indica o retorno em JSON
-@RequestMapping("api/cursos/")
+@RequestMapping("/api/cursos")
 public class CursoController {
-/*
-Curso salvar(Curso curso);
 
-void deletar(Long id);
-
-List<Curso> listar();
-
-Curso buscarPorId(Long id);
-
-Curso adicionarRecursoAoCurso(Long cursoId, Long recursoId);
-
-void removerRecursoDoCurso(Long cursoId, Long recursoId);
-
-Set<RecursoEducacionalAberto> listarRecursosDoCurso(Long cursoId); */
     @Autowired
     private CursoService servico;
 
-    @PostMapping("{id}")
+    @GetMapping()
+    public ResponseEntity<List<Curso>> listar() {
+        List<Curso> cursos = servico.listar();
+        return new ResponseEntity<>(cursos, HttpStatus.OK);
+    }
+    @PostMapping("/{id}")
     public ResponseEntity<Curso> salvar(@RequestBody Curso curso) {
         Curso cursoSalvo = servico.salvar(curso);
         return new ResponseEntity<>(cursoSalvo, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Curso> deletar(@RequestBody Long id) {
         servico.deletar(id);//logica de verifcacao esta no service
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("listar-todos")
-    public ResponseEntity<List<Curso>> listar() {
-        List<Curso> cursos = servico.listar();
-        return new ResponseEntity<>(cursos, HttpStatus.OK);
-    }
 
-    @GetMapping("{id}")
+
+    @GetMapping("/{id}")
     public ResponseEntity<Curso> buscarPorId(@RequestBody Long id) {
         Curso curso = servico.buscarPorId(id);
         return new ResponseEntity<>(curso, HttpStatus.OK);
     }
 
-    @PostMapping("{cursoId}/{recursoId}")//ambos curso e recurso ja devem estar criados
+    @PostMapping("/{cursoId}/{recursoId}")//ambos curso e recurso ja devem estar criados
     public ResponseEntity<Curso> adicionarRecursoAoCurso(@RequestBody Long cursoId, @RequestBody Long recursoId) {
         Curso curso = servico.adicionarRecursoAoCurso(cursoId, recursoId);
         return new ResponseEntity<>(curso, HttpStatus.OK);
     }
 
-    @DeleteMapping("{cursoId}/{recursoId}")
+    @DeleteMapping("/{cursoId}/{recursoId}")
     public ResponseEntity<Void> removerRecursoDoCurso(@RequestBody Long cursoId, @RequestBody Long recursoId) {
         servico.removerRecursoDoCurso(cursoId, recursoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

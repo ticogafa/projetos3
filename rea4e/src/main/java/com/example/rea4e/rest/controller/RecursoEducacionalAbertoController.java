@@ -49,7 +49,7 @@ public class RecursoEducacionalAbertoController{
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("{cursoId}/recursos")
+    @GetMapping("/{cursoId}/recursos")
     public List<RecursoEducacionalAberto> listarRecursosPorCurso(@PathVariable Long cursoId) {
         return servico.listarRecursosPorCurso(cursoId);
     }

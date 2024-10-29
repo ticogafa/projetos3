@@ -58,4 +58,10 @@ public class RecursoEducacionalAberto {
         this.descricao = descricao;
         this.categoria = categoria;
     }
+
+    public RecursoEducacionalAberto(String titulo, String descricao, String url){
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.url = url;
+    }
 }

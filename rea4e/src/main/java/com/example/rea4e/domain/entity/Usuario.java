@@ -86,6 +86,12 @@ public class Usuario {
         return this.obterPermissoes().contains(permissao);
 
     }
+
+    public Usuario (String email, String password, String name){
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 }
 
 

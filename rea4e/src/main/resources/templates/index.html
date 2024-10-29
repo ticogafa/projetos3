@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Recursos Educacionais Abertos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Plataforma de Recursos Educacionais Abertos</h1>
+    </header>
+
+    <main>
+        <section id="usuario-form">
+            <h2>Cadastrar Usuário</h2>
+            <form id="form-usuario">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" id="name" placeholder="Nome" required>
+                <input type="password" id="password" placeholder="Senha" required>
+                <button type="submit" onclick="createUser()">Cadastrar</button>
+            </form>
+        </section>
+
+        <section id="curso-form">
+            <h2>Cadastrar Curso</h2>
+            <form id="form-curso">
+                <input type="text" id="curso-titulo" placeholder="Título do Curso" required>
+                <input type="text" id="curso-descricao" placeholder="Descrição" required>
+                <input type="text" id="curso-imagem" placeholder="URL da Imagem" required>
+                <button type="submit" onclick="createCourse()">Cadastrar Curso</button>
+            </form>
+        </section>
+
+        <section id="rea-form">
+            <h2>Cadastrar Recurso Educacional Aberto</h2>
+            <form id="form-rea">
+                <input type="text" id="rea-titulo" placeholder="Título" required>
+                <input type="text" id="rea-descricao" placeholder="Descrição" required>
+                <input type="text" id="rea-url" placeholder="URL" required>
+                <button type="submit" onclick="createRea()">Cadastrar REA</button>
+            </form>
+        </section>
+
+        <section id="recursos">
+            <h2>Recursos Educacionais Abertos</h2>
+            <button type="button" onclick="listarRecursos()">Listar Recursos</button>
+            <div id="recurso-list"></div>
+
+        <section id="avaliacoes">
+            <h2>Avaliações</h2>
+            <button type="button" onclick="listarAvaliacoes('1')">Listar Avaliações</button>
+            <div id="avaliacao-list"></div>
+        </section>
+
+        <section id="comentarios">
+            <h2>Comentários</h2>
+            <button type="button" onclick="listarComentarios('1')">Listar Comentários</button>
+            <div id="comentario-list"></div>
+        </section>
+
+        <section id="cursos">
+            <h2>Cursos</h2>
+            <button type="button" onclick="listarCursos()">Listar Cursos</button>
+            <div id="curso-list"></div>
+    </main>
+
+    <script>const apiUrl = '/api'; // Altere para o URL da sua API
+
+        // Função para cadastrar usuário
+            
+    function createUser(){
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Dados do formulário
+    const userData = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    
+    // Fazer a requisição POST
+    fetch("/api/usuario/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData) // Converter os dados para JSON
+    })
+    alert("usuario "+name+" criado com sucesso!");
+
+
+
+}
+        
+        // Função para cadastrar curso
+        function createCourse(){
+
+
+            const titulo = document.getElementById('curso-titulo').value;
+            const descricao = document.getElementById('curso-descricao').value;
+            const imagemUrl = document.getElementById('curso-imagem').value;
+        
+            fetch(`${apiUrl}/cursos/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titulo, descricao, imagemUrl })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Curso cadastrado com sucesso!');
+                document.getElementById('form-curso').reset();
+            })
+
+    }
+        // Função para cadastrar REA
+            function createRea(){
+        
+            const titulo = document.getElementById('rea-titulo').value;
+            const descricao = document.getElementById('rea-descricao').value;
+            const url = document.getElementById('rea-url').value;
+        
+            fetch(`${apiUrl}/recurso-educacional-aberto`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titulo, descricao, url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Recurso educacional cadastrado com sucesso!');
+                document.getElementById('form-rea').reset();
+            })
+
+    }
+        // Função para listar avaliações
+        function listarAvaliacoes(recursoId) {
+            fetch(`${apiUrl}/avaliacao/listar-avaliacoes/${recursoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const lista = document.getElementById('avaliacao-list');
+                    lista.innerHTML = '';
+                    data.forEach(avaliacao => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<p>${avaliacao.comentario} - Nota: ${avaliacao.nota}</p>`;
+                        lista.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Erro ao listar avaliações:', error));
+        }
+        
+        // Função para listar comentários
+        function listarComentarios(recursoId) {
+            fetch(`${apiUrl}/comentarios/recurso/${recursoId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const lista = document.getElementById('comentario-list');
+                    lista.innerHTML = '';
+                    data.forEach(comentario => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<p>${comentario.pergunta} - Usuário ID: ${comentario.usuario_id}</p>`;
+                        lista.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Erro ao listar comentários:', error));
+        }
+        
+        function listarRecursos() {
+            fetch(`${apiUrl}/recurso-educacional-aberto`)
+                .then(response => response.json())
+                .then(data => {
+                    const lista = document.getElementById('recurso-list');
+                    lista.innerHTML = '';
+                    data.forEach(recurso => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<p>${recurso.titulo} - ${recurso.descricao} - ${recurso.url}</p>`;
+                        lista.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Erro ao listar recursos:', error));
+        }
+
+        function listarCursos() {
+            fetch(`${apiUrl}/cursos`)
+                .then(response => response.json())
+                .then(data => {
+                    const lista = document.getElementById('curso-list');
+                    lista.innerHTML = '';
+                    data.forEach(curso => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<p>${curso.titulo} - ${curso.descricao} - ${curso.imagemUrl}</p>`;
+                        lista.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Erro ao listar cursos:', error));
+        }
+        // Chamar funções de listagem de avaliações e comentários
+        // Chame estas funções com um ID de recurso específico quando necessário
+        // listarAvaliacoes('1'); // Exemplo de uso
+        // listarComentarios('1'); // Exemplo de uso
+        </script>
+</body>
+</html>

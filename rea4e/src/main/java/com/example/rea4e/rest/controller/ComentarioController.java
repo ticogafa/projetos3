@@ -15,7 +15,7 @@ import com.example.rea4e.domain.entity.Comentario;
 import com.example.rea4e.domain.service.ComentarioService;
 
 @RestController
-@RequestMapping("api/comentarios/")
+@RequestMapping("api/comentarios")
 public class ComentarioController {
 
 private final ComentarioService servico;
@@ -32,20 +32,20 @@ public ComentarioController(ComentarioService servico) {
 
 
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Comentario> buscarPorId(@PathVariable Long id) {
         Comentario comentario = servico.buscarPorId(id);
         return ResponseEntity.ok(comentario);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         servico.deletar(id);
         return ResponseEntity.noContent().build();
     }
     
 
-    @GetMapping("recurso/{recursoId}")
+    @GetMapping("/recurso/{recursoId}")
     public ResponseEntity<List<Comentario>> listarComentariosPorRecurso(@PathVariable Long recursoId) {
         List<Comentario> comentario = servico.listarComentariosPorRecurso(recursoId);
         return ResponseEntity.ok(comentario);
