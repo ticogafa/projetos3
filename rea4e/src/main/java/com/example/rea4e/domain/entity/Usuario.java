@@ -44,6 +44,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private PapelUsuario role;
 
+
     @JsonIgnore//diz para o parser que isso deve ser ignorado no nosso json
     @ManyToMany
     @JoinTable(
@@ -62,6 +63,7 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "rea_id")
     )
     private List<RecursoEducacionalAberto> reasConcluidos = new ArrayList<>(); // Inicializando
+    
     
     @JsonIgnore//diz para o parser que isso deve ser ignorado no nosso json
     @ManyToMany

@@ -43,6 +43,11 @@ public class RecursoEducacionalAbertoController{
         return ResponseEntity.ok(servico.salvar(recurso));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<RecursoEducacionalAberto> atualizar(@PathVariable Long id, @RequestBody RecursoEducacionalAberto recurso) {
+        return ResponseEntity.ok(servico.salvar(recurso));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         servico.deletar(id);

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,11 @@ public ComentarioController(ComentarioService servico) {
         return ResponseEntity.noContent().build();
     }
     
+    @PutMapping("/{id}")
+    public ResponseEntity<Comentario> atualizar(@PathVariable Long id, @RequestBody Comentario comentario) {
+        Comentario comentarioAtualizado = servico.salvar(comentario);
+        return ResponseEntity.ok(comentarioAtualizado);
+    }
 
     @GetMapping("/recurso/{recursoId}")
     public ResponseEntity<List<Comentario>> listarComentariosPorRecurso(@PathVariable Long recursoId) {

@@ -59,6 +59,11 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+        return ResponseEntity.ok(servico.salvar(usuario));
+    }
+
     // Marcar um REA como concluído
     @PostMapping("{usuarioId}/concluir/{reaId}")
     public ResponseEntity<Void> marcarReaComoConcluido(@PathVariable Long usuarioId, @PathVariable Long reaId) {
