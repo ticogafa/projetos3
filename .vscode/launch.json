@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Rea4eApplication<rea4e>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.rea4e.Rea4eApplication",
+            "projectName": "rea4e",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

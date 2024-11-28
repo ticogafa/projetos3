@@ -6,16 +6,17 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background-color: #11194C; 
+
 }
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #11194C;
+  background-color: #ffffff;
   padding: 10px 20px;
-  color: #fff;
+  color: #000000;
 }
 
 .navbar .logo {
@@ -37,7 +38,7 @@ body {
 
 .navbar .menu a {
   margin-left: 1rem;
-  color: #FFFFFF;
+  color: #000000;
   text-decoration: none;
   font-size: 1rem;
 }
