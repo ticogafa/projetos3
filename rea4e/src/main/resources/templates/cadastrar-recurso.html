@@ -47,7 +47,7 @@
 
     <!-- Formulário de Criação/Atualização -->
     <div>
-        <h2>Adicionar/Atualizar Recurso</h2>
+        <h2>Adicionar</h2>
         <form id="recursoForm">
             <input type="hidden" id="recursoId">
             <label>
@@ -116,7 +116,6 @@
                     <td>${recurso.autor}</td>
                     <td>${recurso.categoria}</td>
                     <td>
-                        <button onclick="editarRecurso(${recurso.id})">Editar</button>
                         <button onclick="deletarRecurso(${recurso.id})">Deletar</button>
                     </td>
                 `;

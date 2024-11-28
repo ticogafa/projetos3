@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  
   <link rel="stylesheet" th:href="@{/css/aulas.css}">
   <link rel="stylesheet" th:href="@{/css/footer.css}">
   <link rel="stylesheet" th:href="@{/css/navBar.css}">
+  <!--
   
-  <!-- Carregar recursos JS como módulos -->
+  
+  
+  
+  Carregar recursos JS como módulos -->
   <title>EDURK+ - Cursos</title>
 </head>
 <body>
@@ -23,10 +28,8 @@
   </div>
   
   <div class="course-header">
-    <h1>Cursos</h1>
     
     <!-- Filtro por categoria -->
-    <label for="filtroCategoria">Filtrar por Categoria:</label>
     <select id="filtroCategoria" th:onchange="filtrarCursos()">
       <option value="">Todas as Categorias</option>
       <!-- As categorias serão carregadas dinamicamente -->
@@ -63,6 +66,7 @@
       
       <label for="recursos">Selecione os Recursos:</label>
       <select id="recursos" name="recursos" multiple required>
+        <option value="">Nenhum</option>
         <!-- Os recursos serão carregados aqui -->
       </select><br>
       
