@@ -1,13 +1,18 @@
 package com.example.rea4e.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.rea4e.domain.entity.Categorias;
 import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
 import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController//RestController vai anotar os metodos com @ResponseBody que indica o retorno em JSON
 @RequestMapping("/api/recurso-educacional-aberto")
@@ -57,5 +62,13 @@ public class RecursoEducacionalAbertoController{
     @GetMapping("/{cursoId}/recursos")
     public List<RecursoEducacionalAberto> listarRecursosPorCurso(@PathVariable Long cursoId) {
         return servico.listarRecursosPorCurso(cursoId);
+    }
+
+    @GetMapping("/listar-categorias")
+    public ResponseEntity<Set<String>> listarCategorias() {
+        Set<String> categorias = Arrays.stream(Categorias.values())
+                                       .map(Categorias::name)
+                                       .collect(Collectors.toSet());
+        return new ResponseEntity<>(categorias, HttpStatus.OK);
     }
 }

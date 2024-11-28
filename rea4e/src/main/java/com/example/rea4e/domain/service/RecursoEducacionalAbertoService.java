@@ -7,7 +7,9 @@ import com.example.rea4e.domain.entity.*;
 public interface RecursoEducacionalAbertoService {
     
 RecursoEducacionalAberto salvar(RecursoEducacionalAberto recurso);
+
 RecursoEducacionalAberto buscarPorId(Long id);
+
 void deletar(Long id);
 
 List<RecursoEducacionalAberto> listar();

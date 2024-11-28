@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/rea4e/src/main/resources/static/css/aulas.css">
-  <link rel="stylesheet" href="/rea4e/src/main/resources/static/css/footer.css">
-  <link rel="stylesheet" href="/rea4e/src/main/resources/static/css/navBar.css">
+  <link rel="stylesheet" href="@{/css/aulas.css}">
+  <link rel="stylesheet" href="@{/css/footer.css}">
+  <link rel="stylesheet" href="@{/css/navBar.css}">
   <title>EDURK+</title>
 </head>
 <body>
@@ -25,85 +25,113 @@
     <span class="course-title">Aulas</span>
   </div>
 
-    <div class="course-gallery">
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-          <img src="#" alt="Imagem do aula">
-            <div class="course-title">Título da Aula</div>
-            <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-          <img src="#" alt="Imagem do aula">
-            <div class="course-title">Título da Aula</div>
-            <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/rea4e/src/main/resources/templates/aulaEspecifica.html'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
+    <!-- Galeria de Cursos -->
+    <div class="course-gallery" id="courseGallery">
+        <!-- Os cards serão inseridos dinamicamente aqui -->
     </div>
 
-  <div class="footer">© 2024 por Grupo 8.</p></n>Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390 </div>
+  <div class="footer">© 2024 por Grupo 8. Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390 </div>
 
+  <script>
+    const API_BASE = '/api/recurso-educacional-aberto';
+
+    // Função para carregar categorias
+    async function carregarCategorias() {
+        const response = await fetch(API_BASE + '/listar-categorias');
+        const categorias = await response.json();
+        const select = document.querySelector("#categoria");
+        categorias.forEach(categoria => {
+            const option = document.createElement("option");
+            option.value = categoria;
+            option.innerText = categoria;
+            select.appendChild(option);
+        });
+    }
+
+    // Função que é chamada ao carregar a página
+    window.onload = function() {
+        carregarRecursos();
+        carregarCategorias();
+    };
+
+    // Carregar lista de recursos
+    async function carregarRecursos() {
+        const response = await fetch(API_BASE);
+        const recursos = await response.json();
+        const gallery = document.querySelector("#courseGallery");
+        gallery.innerHTML = ""; // Limpa a galeria antes de preencher
+
+        recursos.forEach(recurso => {
+            const courseCard = document.createElement("div");
+            courseCard.classList.add("course-card");
+            courseCard.onclick = function() {
+                window.location.href = `/rea4e/src/main/resources/templates/aulaEspecifica.html?id=${recurso.id}`;
+            };
+
+            courseCard.innerHTML = `
+                <div class="course-title">${recurso.titulo}</div>
+                <div class="course-description">${recurso.descricao}</div>
+                <div class="course-url"><a href="${recurso.url}" target="_blank">Link da aula</a></div>
+            `;
+
+            gallery.appendChild(courseCard);
+        });
+    }
+
+    // Função para salvar (criar ou atualizar) um recurso
+    document.querySelector("#recursoForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const id = document.querySelector("#recursoId").value;
+        const titulo = document.querySelector("#titulo").value;
+        const descricao = document.querySelector("#descricao").value;
+        const autor = document.querySelector("#autor").value;
+        const categoria = document.querySelector("#categoria").value;
+        const url = document.querySelector("#url").value;
+
+        const metodo = id ? "PUT" : "POST";  // Verifica se é PUT (editar) ou POST (criar)
+        const fetch_url = id ? `${API_BASE}/${id}` : API_BASE;
+
+        const recurso = {
+            titulo,
+            descricao,
+            autor,
+            categoria,
+            url
+        };
+
+        // Realiza a requisição de criação ou atualização
+        await fetch(fetch_url, {
+            method: metodo,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recurso)
+        });
+
+        document.querySelector("#recursoForm").reset(); // Limpa o formulário
+        document.querySelector("#recursoId").value = ""; // Limpa o ID
+        carregarRecursos(); // Atualiza a lista
+    });
+
+    // Função para deletar recurso
+    async function deletarRecurso(id) {
+        if (confirm("Tem certeza que deseja deletar este recurso?")) {
+            await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+            carregarRecursos();
+        }
+    }
+
+    // Função para editar recurso (preenche o formulário com os dados do recurso)
+    async function editarRecurso(id) {
+        const response = await fetch(`${API_BASE}/${id}`);
+        const recurso = await response.json();
+        document.querySelector("#recursoId").value = recurso.id;
+        document.querySelector("#titulo").value = recurso.titulo;
+        document.querySelector("#descricao").value = recurso.descricao;
+        document.querySelector("#autor").value = recurso.autor;
+        document.querySelector("#categoria").value = recurso.categoria;
+        document.querySelector("#url").value = recurso.url;  // Preenche a URL no formulário
+    }
+  </script>
 </body>
 </html>

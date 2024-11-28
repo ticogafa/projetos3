@@ -32,9 +32,7 @@ public class RecursoEducacionalAberto {
     @Column(nullable = false) // Sugestão: torne campos obrigatórios, se aplicável
     private String titulo;
 
-    @ManyToOne(optional = false) // Sugestão: torne campos obrigatórios, se aplicável
-    @JoinColumn(name = "autor_id", nullable = false)
-    private Usuario autor;
+    private String autor;
 
     @Column // Considerar adicionar `nullable` ou `length` se necessário
     private String licenca;  // Ex: Creative Commons
@@ -51,8 +49,7 @@ public class RecursoEducacionalAberto {
     @ManyToMany(mappedBy = "recursos") // Relacionamento muitos-para-muitos inverso
     private Set<Curso> cursos = new HashSet<>(); // Inicializa como um Set
 
-    
-    public RecursoEducacionalAberto(String titulo, Usuario autor, String url, String descricao, Categorias categoria) {
+    public RecursoEducacionalAberto(String titulo, String autor, String url, String descricao, Categorias categoria) {
         this.titulo = titulo;
         this.autor = autor;
         this.url = url;

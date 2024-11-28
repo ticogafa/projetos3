@@ -22,14 +22,14 @@
     border-radius: 4px;
   }
   
-  .course-title {
+  .titulo {
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
     color: #11194C;
   }
   
-  .course-description {
+  .descricao {
     font-size: 12px;
     color: #888;
   }
@@ -58,7 +58,7 @@
     background-color: #0056b3;
   }
   
-  .course-title {
+  .titulo {
     font-size: 1.5rem;
     font-weight: bold;
     color: #11194C;

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="@{/css/aulas.css}">
+  <link rel="stylesheet" href="@{/css/footer.css}">
+  <link rel="stylesheet" href="@{/css/navBar.css}">
+  <title>EDURK+ - Cursos</title>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo" onclick="window.location.href='/rea4e/src/main/resources/templates/paginaInicial.html'">EDURK+</div>
+    <div class="menu">
+      <a href="/rea4e/src/main/resources/templates/paginaInicial.html">Cursos</a>
+      <a href="#">Fórum</a>
+      <a href="#">Favoritos</a>
+    </div>
+    <div class="user-icon" onclick="window.location.href='/rea4e/src/main/resources/templates/profile.html'"></div>
+  </div>
+
+  <div class="course-header">
+    <h1>Cursos</h1>
+    <button onclick="showAddCursoForm()">Adicionar Novo Curso</button>
+  </div>
+
+  <!-- Formulário de adicionar/editar curso -->
+  <div id="addCursoForm" style="display:none;">
+    <h2>Adicionar Novo Curso</h2>
+    <form id="cursoForm">
+      <input type="hidden" id="cursoId" name="cursoId">
+      <label for="titulo">Título do Curso:</label>
+      <input type="text" id="titulo" name="titulo" required><br>
+
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" name="descricao" required></textarea><br>
+
+      <label for="categoria">Categoria:</label>
+      <input type="text" id="categoria" name="categoria" required><br>
+
+      <label for="url">Link do Curso:</label>
+      <input type="text" id="url" name="url" required><br>
+
+      <button type="submit">Salvar Curso</button>
+    </form>
+  </div>
+
+  <div class="course-gallery">
+    <h2>Lista de Cursos</h2>
+    <table id="cursosTable">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>URL</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os cursos serão carregados aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">© 2024 por Grupo 8. Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390 </div>
+
+  <script>
+    const API_BASE = '/api/cursos';
+
+    // Função para carregar todos os cursos
+    async function carregarCursos() {
+      const response = await fetch(API_BASE);
+      const cursos = await response.json();
+      const tbody = document.querySelector("#cursosTable tbody");
+      tbody.innerHTML = ""; // Limpa a tabela antes de preencher
+      cursos.forEach(curso => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${curso.titulo}</td>
+          <td>${curso.descricao}</td>
+          <td>${curso.categoria}</td>
+          <td><a href="${curso.url}" target="_blank">${curso.url}</a></td>
+          <td>
+            <button onclick="editarCurso(${curso.id})">Editar</button>
+            <button onclick="deletarCurso(${curso.id})">Deletar</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Função para adicionar ou editar curso
+    document.querySelector("#cursoForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.querySelector("#cursoId").value;
+      const titulo = document.querySelector("#titulo").value;
+      const descricao = document.querySelector("#descricao").value;
+      const categoria = document.querySelector("#categoria").value;
+      const url = document.querySelector("#url").value;
+
+      const metodo = id ? "PUT" : "POST";  // Verifica se é PUT (editar) ou POST (criar)
+      const fetch_url = id ? `${API_BASE}/${id}` : API_BASE;
+
+      const curso = { titulo, descricao, categoria, url };
+
+      await fetch(fetch_url, {
+        method: metodo,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(curso)
+      });
+
+      document.querySelector("#cursoForm").reset();
+      document.querySelector("#cursoId").value = "";
+      carregarCursos();  // Atualiza a lista de cursos
+      document.querySelector("#addCursoForm").style.display = "none";  // Esconde o formulário
+    });
+
+    // Função para deletar curso
+    async function deletarCurso(id) {
+      if (confirm("Tem certeza que deseja deletar este curso?")) {
+        await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+        carregarCursos();  // Atualiza a lista de cursos
+      }
+    }
+
+    // Função para editar curso
+    async function editarCurso(id) {
+      const response = await fetch(`${API_BASE}/${id}`);
+      const curso = await response.json();
+      document.querySelector("#cursoId").value = curso.id;
+      document.querySelector("#titulo").value = curso.titulo;
+      document.querySelector("#descricao").value = curso.descricao;
+      document.querySelector("#categoria").value = curso.categoria;
+      document.querySelector("#url").value = curso.url;
+      document.querySelector("#addCursoForm").style.display = "block";  // Exibe o formulário
+    }
+
+    // Função para exibir o formulário de adicionar curso
+    function showAddCursoForm() {
+      document.querySelector("#addCursoForm").style.display = "block";  // Exibe o formulário
+    }
+
+    // Carregar cursos quando a página carregar
+    window.onload = carregarCursos;
+  </script>
+
+</body>
+</html>

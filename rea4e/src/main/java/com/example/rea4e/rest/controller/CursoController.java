@@ -1,7 +1,9 @@
 package com.example.rea4e.rest.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,6 +66,7 @@ public class CursoController {
         servico.removerRecursoDoCurso(cursoId, recursoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 
 
 }

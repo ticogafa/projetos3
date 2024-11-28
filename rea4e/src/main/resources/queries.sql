@@ -4,10 +4,10 @@ INSERT INTO USUARIO (EMAIL, NAME, PASSWORD) VALUES
 ('usuario3@example.com', 'Usuário Três', 'hashed_password3'),
 ('usuario4@example.com', 'Usuário Quatro', 'hashed_password4');
 
-INSERT INTO RECURSO_EDUCACIONAL_ABERTO (ID, CATEGORIA, DESCRICAO, LICENCA, TITULO, URL, AUTOR_ID) VALUES
-(1, 'BACKEND', 'Curso sobre Java', 'Creative Commons', 'Java para Iniciantes', 'http://exemplo.com/java', 1),
+INSERT INTO RECURSO_EDUCACIONAL_ABERTO (ID, CATEGORIA, DESCRICAO, LICENCA, TITULO, URL, AUTOR) VALUES
+(1, 'BACKEND', 'Curso sobre Java', 'Creative Commons', 'Java para Iniciantes', 'http://exemplo.com/java', 'pedro'),
 (2, 'BACKEND', 'Curso sobre Python', 'MIT', 'Aprenda Python', 'http://exemplo.com/python', 2),
-(3, 'BACKEND', 'Curso sobre Node.js', 'Apache', 'Introdução ao Node.js', 'http://exemplo.com/nodejs', 3);
+(3, 'BACKEND', 'Curso sobre Node.js', 'Apache', 'Introdução ao Node.js', 'http://exemplo.com/nodejs', 'pedro');
 
 INSERT INTO CURSO (ID, CATEGORIA, DESCRICAO, IMAGEM_URL, TITULO) VALUES
 (1, 'BACKEND', 'Curso completo de Java com projetos práticos', 'http://exemplo.com/imagem_java.jpg', 'Curso de Java Completo'),

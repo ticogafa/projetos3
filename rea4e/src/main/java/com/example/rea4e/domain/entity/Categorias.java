@@ -1,7 +1,6 @@
 package com.example.rea4e.domain.entity;
 
 public enum Categorias {
-
 PROGRAMACAO,
 FRONTEND,
 BACKEND,
@@ -15,6 +14,4 @@ MACHINE_LEARNING,
 DESIGN,
 UX,
 UI,
-
-
 }

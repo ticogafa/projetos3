@@ -41,9 +41,6 @@ public class Usuario {
     @Column
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    private PapelUsuario role;
-
 
     @JsonIgnore//diz para o parser que isso deve ser ignorado no nosso json
     @ManyToMany
@@ -79,15 +76,6 @@ public class Usuario {
         return playlist.calcularProgresso(this.reasConcluidos);
     }
 
-
-    public List<Permissao> obterPermissoes() {
-        return this.role.getPermissoes();
-    }
-
-    public boolean temPermissao(Permissao permissao) {
-        return this.obterPermissoes().contains(permissao);
-
-    }
 
     public Usuario (String email, String password, String name){
         this.email = email;
