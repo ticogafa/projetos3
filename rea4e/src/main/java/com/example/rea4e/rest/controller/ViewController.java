@@ -32,5 +32,25 @@ public class ViewController {
     public String aulas() {
         return "aulas";
     }
+
+    @GetMapping("/aula-especifica")
+    public String aula() {
+        return "aula-especifica";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile";
+    }
+
+    @GetMapping("/pagina-inicial")
+    public String paginaInicial() {
+        return "pagina-inicial";
+    }
+    
+    @GetMapping("/curso")
+    public String curso() {
+        return "curso";
+    }
     
 }

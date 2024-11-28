@@ -1,3 +1,5 @@
+-- DADOS PRA TESTE
+
 INSERT INTO USUARIO (EMAIL, NAME, PASSWORD) VALUES
 ('usuario1@example.com', 'Usuário Um', 'hashed_password1'),
 ('usuario2@example.com', 'Usuário Dois', 'hashed_password2'),
