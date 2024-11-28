@@ -3,6 +3,8 @@ package com.example.rea4e.rest.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -24,6 +26,11 @@ public class ViewController {
     @GetMapping("/cadastrar-curso")
     public String cadastrarCurso() {
         return "cadastrar-curso";
+    }
+    
+    @GetMapping("/aulas")
+    public String aulas() {
+        return "aulas";
     }
     
 }
