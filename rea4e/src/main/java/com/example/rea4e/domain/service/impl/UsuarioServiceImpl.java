@@ -31,7 +31,6 @@ public class UsuarioServiceImpl extends BaseService<Usuario> implements UsuarioS
         eventPublisher.publishInscricaoEmCurso(cursoId, usuarioId);
     }
 
-    
     public void desinscreverEmCurso(Long usuarioId, Long cursoId){
         eventPublisher.publishDesinscricaoEmCurso(cursoId, usuarioId);
     }
@@ -42,8 +41,9 @@ public class UsuarioServiceImpl extends BaseService<Usuario> implements UsuarioS
 
     public void desmarcarRecursoComoConcluido(Long usuarioId, Long recursoId){
         eventPublisher.publishDesmarcarRecursoConcluido(recursoId, usuarioId);
-
 }
+
+
 
 }
 

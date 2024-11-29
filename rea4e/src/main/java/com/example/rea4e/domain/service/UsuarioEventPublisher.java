@@ -2,12 +2,7 @@ package com.example.rea4e.domain.service;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import com.example.rea4e.domain.event.InscricaoEmCursoEvent;
-import com.example.rea4e.domain.event.RecursoDesfavoritadoEvent;
-import com.example.rea4e.domain.event.RecursoFavoritadoEvent;
-import com.example.rea4e.domain.event.RecursoMarcadoComoConcluidoEvent;
-import com.example.rea4e.domain.event.RecursoDesmarcadoComoConcluidoEvent;
-import com.example.rea4e.domain.event.DesinscricaoEmCursoEvent;
+import com.example.rea4e.domain.event.*;
 
 @Service
 public class UsuarioEventPublisher {
@@ -45,6 +40,5 @@ public class UsuarioEventPublisher {
         DesinscricaoEmCursoEvent event = new DesinscricaoEmCursoEvent(this, cursoId, usuarioId);
         publisher.publishEvent(event);
     }
-
 
 }

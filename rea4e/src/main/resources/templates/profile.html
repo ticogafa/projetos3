@@ -1,39 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Usuário</title>
   <link rel="stylesheet" href="/css/profile.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/navBar.css">
-  <title>EDURK+</title>
+  <link rel="stylesheet" th:href="@{/css/footer.css}">
+  <link rel="stylesheet" th:href="@{/css/navBar.css}">
 </head>
 <body>
 
-  <div class="navbar">
-    <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
-    <div class="menu">
-      <a href="/view/pagina-inicial">Cursos</a>
-      <a href="#">Fórum</a>
-      <a href="#">Favoritos</a>
+  <header>
+    <div class="navbar">
+      <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
+      <nav class="menu">
+        <a href="/view/pagina-inicial">Cursos</a>
+        <a href="/view/forum">Fórum</a>
+        <a href="/view/liked">Favoritos</a>
+      </nav>
+      <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
     </div>
-    <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
-  </div>
+  </header>
 
-  <div class="profile-container">
-    <div class="profile-image">
-      <img src="#" class="image-placeholder">
-    </div>
-    <div class="nome">Nome do aluno</div>
-    <div class="nome">ID</div>
-    <div class="nome">Data de Nascimento</div>
-  </div>
+  <div class="user-panel">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <div class="profile">
+        <img src="/images/profile-pic.png" alt="Avatar do usuário" class="avatar">
+        <div class="user-info">
+          <h2>Karina Leão</h2>
+          <p>kahleao20@gmail.com</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <h3>02</h3>
+          <p>Cursos</p>
+        </div>
+        <div class="stat">
+          <h3>12</h3>
+          <p>Aulas</p>
+        </div>
+      </div>
+    </header>
 
-  <div class="footer">
-    © 2024 por Grupo 8. Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390
-  </div>
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <section class="aulas">
+        <button class="add-button">+ Nova aula</button>
+        <div class="aula-grid">
+          <img src="/images/course.png" alt="Aula 1">
+          <img src="/images/course.png" alt="Aula 2">
+          <img src="/images/course.png" alt="Aula 3">
+          <img src="/images/course.png" alt="Aula 4">
 
+        </div>
+      </section>
+
+      <section class="cursos">
+        <button class="add-button">+ Novo curso</button>
+        <div class="curso-card">
+          <h4>Curso de inglês A1</h4>
+          <p>6 a 10h</p>
+          <p>Professor: Yasmine Urubá</p>
+        </div>
+        <div class="curso-card">
+          <h4>Curso de inglês A1</h4>
+          <p>6 a 10h</p>
+          <p>Professor: Yasmine Urubá</p>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

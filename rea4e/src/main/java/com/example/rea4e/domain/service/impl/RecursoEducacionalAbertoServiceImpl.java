@@ -47,6 +47,7 @@ public class RecursoEducacionalAbertoServiceImpl extends BaseService<RecursoEduc
         List<RecursoEducacionalAberto> lista = reaRepositorio.findByCursos_Id(cursoId);
         return lista;
     }
+
     @Override
     public List<RecursoEducacionalAberto> listarRecursosPorCurso(Curso curso) {
         List<RecursoEducacionalAberto> lista = reaRepositorio.findByCursosContaining(curso);

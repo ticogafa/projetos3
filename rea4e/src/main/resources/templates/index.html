@@ -1,182 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recursos Educacionais Abertos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f4f4f4;
-            text-align: left;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edurk - Cursos</title>
+  <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    <h1>Recursos Educacionais Abertos</h1>
+  <header>
+    <div class="logo">
+      <img src="logo.svg" alt="Logo Edurk">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Cursos</a></li>
+        <li><a href="/view/forum">Fórum</a></li>
+        <li><a href="#">Favoritos</a></li>
+      </ul>
+    </nav>
+    <div class="user-profile">
+      <img src="user-profile.jpg" alt="Foto do usuário">
+    </div>
+  </header>
 
-    <!-- Listagem -->
-    <div>
-        <h2>Lista de Recursos</h2>
-        <table id="recursosTable">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Autor</th>
-                    <th>Categoria</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Recursos serão adicionados aqui dinamicamente -->
-            </tbody>
-        </table>
+  <main>
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar">
+      <button class="filter-btn">
+        <img src="filter-icon.svg" alt="Ícone de filtro">
+      </button>
     </div>
 
-    <!-- Formulário de Criação/Atualização -->
-    <div>
-        <h2>Adicionar</h2>
-        <form id="recursoForm">
-            <input type="hidden" id="recursoId">
-            <label>
-                Título: 
-                <input type="text" id="titulo" required>
-            </label>
-            <br><br>
-            <label>
-                Descrição: 
-                <input type="text" id="descricao" required>
-            </label>
-            <br><br>
-            <label>
-                Url:
-                <input type="text" id="url" required>
-            </label>
-            <br><br>
-            <label>
-                Autor:
-                <input type="text" id="autor" required>
-            </label>
-            <br><br>
-            <label>
-                Categoria:
-                <select id="categoria" required>
-                    <!-- Categorias serão adicionadas aqui dinamicamente -->
-                </select>
-            </label>
-            <br><br>
-            <button type="submit">Salvar</button>
-        </form>
+    <div class="courses-grid">
+      <!-- Cartão de curso -->
+      <div class="course-card">
+        <img src="course-image.jpg" alt="Imagem do curso" class="course-image">
+        <div class="course-info">
+          <h3>Culinária 1 ao 100</h3>
+          <p>14 aulas - 9h</p>
+          <p>Professor: Carlos Neiva</p>
+        </div>
+        <button class="favorite-btn">
+          <img src="heart-icon.svg" alt="Favoritar">
+        </button>
+      </div>
+
+      <!-- Duplicar este bloco para os demais cursos -->
+      <div class="course-card">
+        <img src="course-image.jpg" alt="Imagem do curso" class="course-image">
+        <div class="course-info">
+          <h3>Curso HTML</h3>
+          <p>32 aulas - 24h</p>
+          <p>Professor: Maria Clara Lima</p>
+        </div>
+        <button class="favorite-btn">
+          <img src="heart-icon.svg" alt="Favoritar">
+        </button>
+      </div>
+
+      <!-- Continue adicionando os demais cartões -->
     </div>
-
-    <script>
-        const API_BASE = '/api/recurso-educacional-aberto';
-
-        // Carregar categorias
-        async function carrecarCategorias() {
-            const response = await fetch(API_BASE + '/listar-categorias');
-            const categorias = await response.json();
-            const select = document.querySelector("#categoria");
-            categorias.forEach(categoria => {
-                const option = document.createElement("option");
-                option.value = categoria;
-                option.innerText = categoria;
-                select.appendChild(option);
-            });
-        }
-
-        window.onload = function() {
-            carregarRecursos();
-            carrecarCategorias();
-        };
-
-        // Carregar lista de recursos
-        async function carregarRecursos() {
-            const response = await fetch(API_BASE);
-            const recursos = await response.json();
-            const tbody = document.querySelector("#recursosTable tbody");
-            tbody.innerHTML = ""; // Limpa a tabela antes de preencher
-            recursos.forEach(recurso => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${recurso.titulo}</td>
-                    <td>${recurso.descricao}</td>
-                    <td>${recurso.autor}</td>
-                    <td>${recurso.categoria}</td>
-                    <td>
-                        <button onclick="deletarRecurso(${recurso.id})">Deletar</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Salvar (criar ou atualizar) recurso
-        document.querySelector("#recursoForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const id = document.querySelector("#recursoId").value;
-            const titulo = document.querySelector("#titulo").value;
-            const descricao = document.querySelector("#descricao").value;
-            const autor = document.querySelector("#autor").value;
-            const categoria = document.querySelector("#categoria").value;
-            const url = document.querySelector("#url").value;
-
-            const metodo = id ? "PUT" : "POST";  // Verifica se é PUT (editar) ou POST (criar)
-            const fetch_url = id ? `${API_BASE}/${id}` : API_BASE;
-
-            const recurso = {
-                titulo,
-                descricao,
-                autor,
-                categoria,
-                url
-            };
-
-            // Realiza a requisição de criação ou atualização
-            await fetch(fetch_url, {
-                method: metodo,
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(recurso)
-            });
-
-            document.querySelector("#recursoForm").reset(); // Limpa o formulário
-            document.querySelector("#recursoId").value = ""; // Limpa o ID
-            carregarRecursos(); // Atualiza a lista
-        });
-
-        // Deletar recurso
-        async function deletarRecurso(id) {
-            if (confirm("Tem certeza que deseja deletar este recurso?")) {
-                await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
-                carregarRecursos();
-            }
-        }
-
-        // Editar recurso (preenche o formulário com os dados do recurso)
-        async function editarRecurso(id) {
-            const response = await fetch(`${API_BASE}/${id}`);
-            const recurso = await response.json();
-            document.querySelector("#recursoId").value = recurso.id;
-            document.querySelector("#titulo").value = recurso.titulo;
-            document.querySelector("#descricao").value = recurso.descricao;
-            document.querySelector("#autor").value = recurso.autor;
-            document.querySelector("#categoria").value = recurso.categoria;
-            document.querySelector("#url").value = recurso.url;  // Preenche a URL no formulário
-        }
-    </script>
+  </main>
 </body>
 </html>

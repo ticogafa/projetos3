@@ -6,104 +6,38 @@
   <link rel="stylesheet" href="/css/aulas.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/navBar.css">
-  <title>EDURK+</title>
+  <title>Recursos do Curso</title>
+  <script type ="module" src="/js/recursos.js" defer></script>
 </head>
 <body>
 
+  <header>
     <div class="navbar">
-        <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
-        <div class="menu">
-          <a href="/view/pagina-inicial">Cursos</a>
-          <a href="#">Fórum</a>
-          <a href="#">Favoritos</a>
-        </div>
-        <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
+      <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
+      <nav class="menu">
+        <a href="/view/pagina-inicial">Cursos</a>
+        <a href="/view/forum">Fórum</a>
+        <a href="/view/liked">Favoritos</a>
+      </nav>
+      <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
     </div>
+  </header>
 
   <div class="course-header">
-    <a onclick="window.location.href='view/curso'" class="back-button">Voltar</a>
-    <span class="course-title">Aulas</span>
+    <button onclick="window.location.href='/view/curso'" class="back-button">Voltar</button>
+    <span class="course-title">Recursos do Curso</span>
   </div>
 
-    <div class="course-gallery">
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-          <img src="#" alt="Imagem do aula">
-            <div class="course-title">Título da Aula</div>
-            <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-          <img src="#" alt="Imagem do aula">
-            <div class="course-title">Título da Aula</div>
-            <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
-        <div class="course-card" onclick="window.location.href='/view/aula-especifica'">
-            <img src="#" alt="Imagem do aula">
-              <div class="course-title">Título da Aula</div>
-              <div class="course-description">BREVE DESCRIÇÃO</div>
-        </div>
+  <div id="aula-container" class="course-container">
+    <div id="aula-description" class="course-description">
+      <!-- Os recursos do curso serão carregados aqui dinamicamente pelo JavaScript -->
     </div>
+  </div>
 
-  <div class="footer">© 2024 por Grupo 8.</p></n>Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390 </div>
+  <div class="footer">
+    <p>© 2024 por Grupo 8.</p>
+    <p>Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390</p>
+  </div>
 
 </body>
 </html>

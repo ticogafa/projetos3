@@ -23,7 +23,9 @@ public interface RecursoEducacionalAbertoRepository extends JpaRepository<Recurs
 List<RecursoEducacionalAberto> findByAutor(Usuario autor);//Por meio da assinatura do método, o Spring Data JPA entende que a consulta deve ser feita com base no atributo autor da entidade RecursoEducacionalAberto.
     
     // Método para encontrar recursos associados a um curso
+
 List<RecursoEducacionalAberto> findByCursosContaining(Curso curso);
+
 List<RecursoEducacionalAberto> findByCursos_Id(Long cursoId);
 
 

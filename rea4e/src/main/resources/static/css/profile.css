@@ -1,42 +1,164 @@
-    .user-icon {
-    width: 35px;
-    height: 35px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    font-family: Arial, sans-serif;
-    background-color: #EB5C24;
-    border-radius: 15%;
-    margin-top: 50px;
-    margin-left:500px;
-    margin-right:500px;
-  }
-  
-  .profile-container .profile-image {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 1rem;
-    border-radius: 50%;
-    background: #000;
-  }
-  
-  .profile-container .profile-image img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .profile-container .nome {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-    color: #000000;
-  }
-  
+/* Reset */
+* {
+  margin-top:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #00154f;
+  color: white;
+  margin: 0; /* Remove margem padrão do body */
+  padding: 0;
+}
+
+.user-panel {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding-top: 60px; /* Espaço para a navbar fixa */
+}
+
+.menu {
+  display: flex;
+  gap: 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.menu a:hover {
+  color: #ffe6cc;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+  background: url('/images/user-icon.png') no-repeat center center;
+  background-size: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff6600;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.user-info h2 {
+  font-size: 18px;
+  color: white;
+}
+
+.user-info p {
+  font-size: 14px;
+  color: #ffe6cc;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 24px;
+  color: white;
+}
+
+.stat p {
+  font-size: 14px;
+  color: #ffe6cc;
+}
+
+/* Conteúdo principal */
+.main-content {
+  display: flex;
+  gap: 20px;
+  background-color: #00154f;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Seção de aulas */
+.aulas {
+  flex: 2;
+}
+
+.add-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.add-button:hover {
+  background-color: #e55500;
+}
+
+.aula-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.aula-grid img {
+  width: 100%;
+  border-radius: 5px;
+  border: 3px solid #ff6600;
+}
+
+/* Seção de cursos */
+.cursos {
+  flex: 1;
+}
+
+.curso-card {
+  background-color: white;
+  color: #00154f;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.curso-card h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ff6600;
+}
+
+.curso-card p {
+  font-size: 14px;
+}

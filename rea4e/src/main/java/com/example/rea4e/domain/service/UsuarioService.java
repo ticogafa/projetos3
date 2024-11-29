@@ -17,6 +17,7 @@ void desmarcarRecursoComoConcluido(Long usuarioId, Long reaId);
 void inscreverEmCurso(Long usuarioId, Long cursoId);
 void desinscreverEmCurso(Long usuarioId, Long cursoId);
 
+
 //void adicionarPermissaoUsuario(Long usuarioId, String permissao);
 //void removerPermissaoUsuario(Long usuarioId, String permissao);
 //TODO: listarPermissoesUsuario(Long usuarioId)

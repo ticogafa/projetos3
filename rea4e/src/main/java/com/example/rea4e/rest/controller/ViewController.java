@@ -3,7 +3,6 @@ package com.example.rea4e.rest.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -13,11 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ViewController {
 
 
-    @GetMapping()
+    @GetMapping("/index")
     public String home() {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    @GetMapping("/cadastro")
+    public String cadastrarUsuario() {
+        return "cadastro";
+    }
     @GetMapping("/cadastrar-recurso")
     public String cadastrarRecurso() {
         return "cadastrar-recurso";
@@ -52,5 +59,15 @@ public class ViewController {
     public String curso() {
         return "curso";
     }
+
+    @GetMapping("/forum")
+    public String test() {
+        return "forum";
+    }
     
+    @GetMapping("/liked")
+        public String liked() {
+            return "liked";
+        }
+        
 }

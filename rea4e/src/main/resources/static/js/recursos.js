@@ -1,5 +1,9 @@
-const API_RECURSOS = 'api/recurso-educacional-aberto';
-
+const API_RECURSOS = '/api/recurso-educacional-aberto';
+const urlParams = new URLSearchParams(window.location.search);
+const cursoId = urlParams.get('id');
+window.onload = async () => {
+carregarRecursosDoCurso(cursoId);
+}
 // Lista todos os recursos
 async function carregarRecursos() {
     const response = await fetch(API_RECURSOS);
@@ -7,6 +11,22 @@ async function carregarRecursos() {
     return recursos;
 }
 
+function carregarRecursosDoCurso(cursoId) {
+    const courseContainer = document.querySelector("#aula-container");
+    const courseDescription = courseContainer.querySelector("#aula-description");
+    courseDescription.innerHTML = ""; // Limpa a descrição do curso antes de preencher
+    obterRecursosPorCurso(cursoId).then(recursos => {
+        recursos.forEach(recurso => {
+            const div = document.createElement("div");
+            
+            div.className = "recurso";
+            div.textContent = recurso.titulo;
+            courseDescription.appendChild(div);
+        });
+    }).catch(error => {
+        console.error('Erro ao carregar os recursos do curso:', error);
+    });
+}
 
 // Função para carregar os recursos em um select
 export function carregarObjetoRecurso() {
@@ -25,14 +45,14 @@ export function carregarObjetoRecurso() {
 }
 
 // Nova função para carregar recursos por autor
-export async function carregarRecursosPorAutor(autorId) {
+async function carregarRecursosPorAutor(autorId) {
     const response = await fetch(`${API_RECURSOS}/autor/${autorId}`);
     const recursos = await response.json();
     return recursos;
 }
 
 // Função para carregar os recursos por autor em um select
-export function carregarRecursosPorAutorSelect(autorId) {
+function carregarRecursosPorAutorSelect(autorId) {
     const selectRecursos = document.querySelector("#recursos");
     selectRecursos.innerHTML = ""; // Limpa a lista de recursos antes de preencher
     carregarRecursosPorAutor(autorId).then(recursos => {
@@ -48,14 +68,14 @@ export function carregarRecursosPorAutorSelect(autorId) {
 }
 
 // Nova função para carregar recursos por categoria
-export async function carregarRecursosPorCategoria(categoria) {
+async function carregarRecursosPorCategoria(categoria) {
     const response = await fetch(`${API_RECURSOS}/categoria/${categoria}`);
     const recursos = await response.json();
     return recursos;
 }
 
 // Função para carregar os recursos por categoria em um select
-export function carregarRecursosPorCategoriaSelect(categoria) {
+function carregarRecursosPorCategoriaSelect(categoria) {
     const selectRecursos = document.querySelector("#recursos");
     selectRecursos.innerHTML = ""; // Limpa a lista de recursos antes de preencher
     carregarRecursosPorCategoria(categoria).then(recursos => {
@@ -71,14 +91,14 @@ export function carregarRecursosPorCategoriaSelect(categoria) {
 }
 
 // Nova função para buscar um recurso por ID
-export async function carregarRecursoPorId(id) {
+async function carregarRecursoPorId(id) {
     const response = await fetch(`${API_RECURSOS}/${id}`);
     const recurso = await response.json();
     return recurso;
 }
 
 // Função para exibir os detalhes de um recurso (por exemplo, em uma página de detalhes)
-export function exibirDetalhesRecurso(id) {
+function exibirDetalhesRecurso(id) {
     carregarRecursoPorId(id).then(recurso => {
         const detalhes = document.querySelector("#detalhesRecurso");
         detalhes.innerHTML = `
@@ -93,7 +113,7 @@ export function exibirDetalhesRecurso(id) {
 }
 
 // Função para salvar um novo recurso
-export async function salvarRecurso(recurso) {
+async function salvarRecurso(recurso) {
     const response = await fetch(API_RECURSOS, {
         method: 'POST',
         headers: {
@@ -106,7 +126,7 @@ export async function salvarRecurso(recurso) {
 }
 
 // Função para salvar um novo recurso (exemplo de uso em um formulário)
-export function salvarRecursoFormulario() {
+function salvarRecursoFormulario() {
     const recurso = {
         titulo: document.querySelector("#titulo").value,
         descricao: document.querySelector("#descricao").value,
@@ -122,7 +142,7 @@ export function salvarRecursoFormulario() {
 }
 
 // Nova função para atualizar um recurso
-export async function atualizarRecurso(id, recurso) {
+async function atualizarRecurso(id, recurso) {
     const response = await fetch(`${API_RECURSOS}/${id}`, {
         method: 'PUT',
         headers: {
@@ -135,7 +155,7 @@ export async function atualizarRecurso(id, recurso) {
 }
 
 // Função para atualizar um recurso (exemplo de uso em um formulário)
-export function atualizarRecursoFormulario(id) {
+function atualizarRecursoFormulario(id) {
     const recurso = {
         titulo: document.querySelector("#titulo").value,
         descricao: document.querySelector("#descricao").value,
@@ -151,7 +171,7 @@ export function atualizarRecursoFormulario(id) {
 }
 
 // Função para deletar um recurso
-export async function deletarRecurso(id) {
+async function deletarRecurso(id) {
     const response = await fetch(`${API_RECURSOS}/${id}`, {
         method: 'DELETE'
     });
@@ -159,7 +179,7 @@ export async function deletarRecurso(id) {
 }
 
 // Função para deletar um recurso (exemplo de uso)
-export function deletarRecursoFormulario(id) {
+function deletarRecursoFormulario(id) {
     deletarRecurso(id).then(success => {
         if (success) {
             console.log('Recurso deletado com sucesso');
@@ -171,23 +191,27 @@ export function deletarRecursoFormulario(id) {
     });
 }
 
-// Nova função para carregar recursos por curso
-export async function carregarRecursosPorCurso(cursoId) {
+//TODO
+async function obterRecursosPorCurso(cursoId) {
     const response = await fetch(`${API_RECURSOS}/${cursoId}/recursos`);
     const recursos = await response.json();
     return recursos;
 }
 
 // Função para carregar os recursos por curso em um select
-export function carregarRecursosPorCursoSelect(cursoId) {
-    const selectRecursos = document.querySelector("#recursos");
+function carregarRecursosPorCurso(cursoId) {
+    const selectRecursos = document.querySelector("#aula-container");
     selectRecursos.innerHTML = ""; // Limpa a lista de recursos antes de preencher
-    carregarRecursosPorCurso(cursoId).then(recursos => {
+    obterRecursosPorCurso(cursoId).then(recursos => {
         recursos.forEach(recurso => {
-            const option = document.createElement("option");
-            option.value = recurso.id;
-            option.textContent = recurso.titulo;
-            selectRecursos.appendChild(option);
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <h3>Titulo: ${recurso.titulo}</h3>
+                <p>Descricao: ${recurso.descricao}</p>
+                <p>Categoria: ${recurso.categoria}</p>
+                <p>Autor: ${recurso.autor}</p>
+            `;
+            selectRecursos.appendChild(div);
         });
     }).catch(error => {
         console.error('Erro ao carregar os recursos por curso:', error);
@@ -195,14 +219,14 @@ export function carregarRecursosPorCursoSelect(cursoId) {
 }
 
 // Nova função para listar todas as categorias
-export async function listarCategorias() {
+async function listarCategorias() {
     const response = await fetch(`${API_RECURSOS}/listar-categorias`);
     const categorias = await response.json();
     return categorias;
 }
 
 // Função para carregar categorias em um select
-export function carregarCategoriasSelect() {
+function carregarCategoriasSelect() {
     const selectCategorias = document.querySelector("#categorias");
     selectCategorias.innerHTML = ""; // Limpa a lista de categorias antes de preencher
     listarCategorias().then(categorias => {

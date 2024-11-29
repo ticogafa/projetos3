@@ -15,6 +15,11 @@ window.onload = async () => {
 };
 
 // Funções para manipulação de cursos
+function obterCursoPorUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id =urlParams.get('id');
+  return fetch(`${API_BASE}/${id}`).then(response => response.json());
+}
 
 function obterCursos() {
     return fetch(API_BASE).then(response => response.json());
@@ -42,7 +47,6 @@ async function carregarCursos(filtroCategoria = '') {
         card.classList.add("course-card");
         card.id = `curso${index + 1}`; // Atribui um ID único ao card (curso1, curso2, etc.)
         card.onclick = () => window.location.href = `/view/curso?id=${curso.id}`; // Redireciona ao clicar
-  
         // Preenche o conteúdo do card
         card.innerHTML = `
           <img src="/images/curso-logo.png" alt="Imagem do curso">
@@ -220,3 +224,5 @@ function showAddCursoForm() {
 
 document.querySelector("#cursoForm").addEventListener("submit", salvarCurso);
 document.querySelector("#filtroCategoria").addEventListener("change", filtrarCursos);
+
+

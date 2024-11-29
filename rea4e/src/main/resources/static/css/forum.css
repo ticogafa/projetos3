@@ -1,0 +1,110 @@
+/* Definição das variáveis de cor no :root */
+:root {
+    --cor-primaria: #293453;
+    --cor-secundaria: #ff6600;
+    --cor-fundo: #f0f0f0;
+    --cor-texto: #00154f;
+    --cor-branca: #fff;
+    
+    --cor-fundo-texto: #EB5C24;
+  }
+  
+  /* Estilos globais */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-);
+  }
+  
+  /* Conteúdo principal */
+  .main-content {
+    padding: 20px;
+  }
+  
+  .forum-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .forum-header h1 {
+    font-size: 28px;
+    color: var(--cor-primaria);
+  }
+  
+  .ask-button {
+    padding: 10px 20px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .ask-button:hover {
+    background-color: #e55500;
+  }
+  
+  /* Lista do Fórum */
+  .forum-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .forum-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-primaria);
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid var(--cor-secundaria);
+  }
+  
+  .forum-details {
+    flex: 1;
+  }
+  
+  .forum-details p {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--cor-branca);
+    margin-bottom: 5px;
+  }
+  
+  .forum-details span {
+    font-size: 14px;
+    color: var(--cor-secundaria);
+  }
+  
+
+  .respond-button {
+    padding: 8px 15px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .respond-button:hover {
+    background-color: #e55500;
+  }
+  

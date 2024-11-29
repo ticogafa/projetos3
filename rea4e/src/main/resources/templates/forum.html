@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edurk - Fórum</title>
+  <link rel="stylesheet" href="/css/forum.css">
+  <link rel="stylesheet" th:href="@{/css/footer.css}">
+  <link rel="stylesheet" th:href="@{/css/navBar.css}">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+          <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
+          <nav class="menu">
+            <a href="/view/pagina-inicial">Cursos</a>
+            <a href="/view/forum">Fórum</a>
+            <a href="/view/liked">Favoritos</a>
+          </nav>
+          <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
+        </div>
+      </header>
+
+  <main class="main-content">
+    <section class="forum">
+      <div class="forum-header">
+        <h1>Fórum</h1>
+        <button class="ask-button">Perguntar no Fórum</button>
+      </div>
+      <div class="forum-list">
+        <div class="forum-item">
+          <img src="/images/avatar.png" alt="Avatar" class="avatar">
+          <div class="forum-details">
+            <p>Pessoas, como abrir o Figma Mobile?</p>
+            <span>33 Respostas</span>
+          </div>
+          <button class="respond-button">Responder</button>
+        </div>
+        <div class="forum-item">
+          <img src="/images/avatar.png" alt="Avatar" class="avatar">
+          <div class="forum-details">
+            <p>Estou com dúvida no código da aula 4 de HTML</p>
+            <span>9 Respostas</span>
+          </div>
+          <button class="respond-button">Responder</button>
+        </div>
+        <!-- Adicione mais itens conforme necessário -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>

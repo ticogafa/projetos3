@@ -14,7 +14,6 @@ List<Curso> listar();
 
 Curso buscarPorId(Long id);
 
-
 Curso adicionarRecursoAoCurso(Long cursoId, Long recursoId);
 
 void removerRecursoDoCurso(Long cursoId, Long recursoId);

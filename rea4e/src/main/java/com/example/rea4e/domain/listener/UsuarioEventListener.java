@@ -5,24 +5,11 @@ import java.util.List;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.example.rea4e.domain.entity.Curso;
-import com.example.rea4e.domain.entity.RecursoEducacionalAberto;
-import com.example.rea4e.domain.entity.Usuario;
-import com.example.rea4e.domain.event.DesinscricaoEmCursoEvent;
-import com.example.rea4e.domain.event.InscricaoEmCursoEvent;
-import com.example.rea4e.domain.event.RecursoDesfavoritadoEvent;
-import com.example.rea4e.domain.event.RecursoFavoritadoEvent;
-import com.example.rea4e.domain.event.RecursoMarcadoComoConcluidoEvent;
-import com.example.rea4e.domain.exception.CourseNotFoundInSubscribedListException;
-import com.example.rea4e.domain.exception.ResourceAlreadyFavoritedException;
-import com.example.rea4e.domain.exception.ResourceAlreadyFinishedException;
-import com.example.rea4e.domain.exception.ResourceNotPresentInConcludedException;
-import com.example.rea4e.domain.exception.ResourceNotPresentInFavouritesException;
-import com.example.rea4e.domain.exception.UserAlreadySubscribedException;
+import com.example.rea4e.domain.entity.*;
+import com.example.rea4e.domain.event.*;
+import com.example.rea4e.domain.exception.*;
+import com.example.rea4e.domain.service.*;
 import com.example.rea4e.domain.repository.UsuarioRepository;
-import com.example.rea4e.domain.service.CursoService;
-import com.example.rea4e.domain.service.RecursoEducacionalAbertoService;
-import com.example.rea4e.domain.service.UsuarioService;
 
 @Component
 public class UsuarioEventListener {
@@ -125,4 +112,5 @@ Long cursoId=event.getCursoId();
         usuarioRepository.save(usuario);
     }
 }
+
 }

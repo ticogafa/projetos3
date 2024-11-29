@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/aula-especifica.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/navBar.css">
+  <link rel="stylesheet" th:href="@{/css/aula-especifica.css}">
+  <link rel="stylesheet" th:href="@{/css/footer.css}">
+  <link rel="stylesheet" th:href="@{/css/navBar.css}">
+  <script th:src="@{/js/aulas-do-curso.js}"></script>
   <title>EDURK+</title>
 </head>
 <body>
 
-  <div class="navbar">
-    <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
-    <div class="menu">
-      <a href="/view/pagina-inicial">Cursos</a>
-      <a href="#">Fórum</a>
-      <a href="#">Favoritos</a>
+  <header>
+    <div class="navbar">
+      <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
+      <nav class="menu">
+        <a href="/view/pagina-inicial">Cursos</a>
+        <a href="/view/forum">Fórum</a>
+        <a href="/view/liked">Favoritos</a>
+      </nav>
+      <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
     </div>
-    <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
-  </div>
+  </header>
 
   <div class="course-header">
     <button onclick="window.location.href='/view/aulas'" class="back-button">Voltar</button>

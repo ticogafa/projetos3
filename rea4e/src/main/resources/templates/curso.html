@@ -1,53 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/curso.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  <link rel="stylesheet" href="/css/navBar.css">
-  <title>EDURK+</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinária 1 ao 100</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+    <header class="header">
+        <div class="logo">Edurk</div>
+        <nav class="navbar">
+            <a href="#" class="active">Início</a>
+            <a href="#">Cursos</a>
+            <a href="#">Fórum</a>
+            <a href="#">Favoritos</a>
+        </nav>
+        <div class="profile">
+            <img src="profile.jpg" alt="Perfil">
+        </div>
+    </header>
 
-  <div class="navbar">
-    <div class="logo" onclick="window.location.href='/view/pagina-inicial'">EDURK+</div>
-    <div class="menu">
-      <a href="/view/pagina-inicial">Cursos</a>
-      <a href="#">Fórum</a>
-      <a href="#">Favoritos</a>
+    <div class="main-content">
+        <section class="course">
+            <h1>Culinária 1 ao 100</h1>
+            <p>Aprenda a arte da cozinha com o renomado Chef Carlos Neiva, um mestre apaixonado por transformar ingredientes simples em pratos extraordinários. Com anos de experiência e uma abordagem prática e criativa, o Chef Carlos combina técnicas clássicas e modernas para ensinar de maneira acessível e inspiradora.</p>
+            <p>Neste curso exclusivo, você será guiado por 14 aulas que abrangem uma variedade de temas, desde receitas tradicionais até criações inovadoras. Com a orientação do Chef Carlos, você descobrirá os segredos para equilibrar sabores, aperfeiçoar texturas e criar apresentações impecáveis.</p>
+            <p>Ideal para iniciantes e entusiastas experientes, este curso é sua oportunidade de explorar novas habilidades, se aventurar por diferentes estilos culinários e transformar sua paixão pela gastronomia em verdadeiras obras de arte na cozinha. Venha aprender com quem entende!</p>
+            <button class="watch-button">Assistir agora</button>
+        </section>
     </div>
-    <div class="user-icon" onclick="window.location.href='/view/profile'"></div>
-  </div>
-
-  <div class="course-header">
-    <button onclick="window.location.href='/view/pagina-inicial'" class="back-button">Voltar</button>
-    <span class="course-title">Nome do curso</span>
-  </div>
-  <div class="course-container">
-    <div class="course-image">
-      <img src="#" alt="Imagem do curso" class="image-placeholder">
-    </div>
-
-    <div class="course-info">
-      <h1>Nome do curso</h1>
-      <div class="progress-bar">
-        <span>60%</span>
-      </div>
-    </div>
-
-    <div class="course-description">
-      <p>Descrição do curso linha 1</p>
-      <p>Descrição do curso linha 2</p>
-      <p>Descrição do curso linha 3</p>
-    </div>
-
-    <div class="action-button">
-      <button onclick="window.location.href='/view/aulas'">Começar curso</button>
-    </div>
-  </div>
-
-  <div class="footer">© 2024 por Grupo 8.</p></n>Rua Bione, Cais do Apolo, 77, Recife - PE, 50030-390 </div>
-
 </body>
 </html>
